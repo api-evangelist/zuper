@@ -1,0 +1,52 @@
+{
+  "description": "Example: Get all urgent jobs scheduled for this week",
+  "request": {
+    "method": "GET",
+    "url": "https://{dc_region}.zuperpro.com/api/jobs",
+    "headers": {
+      "x-api-key": "YOUR_API_KEY"
+    },
+    "query_parameters": {
+      "page": 1,
+      "count": 25,
+      "sort": "ASC",
+      "sort_by": "scheduled_start_time",
+      "date_type": "scheduled_date",
+      "filter.priority": "URGENT",
+      "filter.from_date": "2026-06-13T00:00:00Z",
+      "filter.to_date": "2026-06-20T23:59:59Z",
+      "filter.job_status": "OPEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "type": "success",
+      "data": [
+        {
+          "job_uid": "6fa6fec0-d6f9-11ee-bf60-d1e9e2f3bc94",
+          "work_order_number": "WO-00001042",
+          "job_title": "Emergency Boiler Repair",
+          "job_category": {
+            "category_uid": "a3f82c10-1234-5678-abcd-ef0123456789",
+            "category_name": "Heating"
+          },
+          "job_priority": "URGENT",
+          "job_type": "NEW",
+          "scheduled_start_time": "2026-06-14T08:00:00Z",
+          "scheduled_end_time": "2026-06-14T11:00:00Z",
+          "customer_uid": "4185a6c0-58d0-11e8-a06a-f1f7062602d6",
+          "assigned_to": [
+            {
+              "user_uid": "b7c9d2e0-aaaa-bbbb-cccc-ddddeeee0001",
+              "user_name": "Mike Technician"
+            }
+          ]
+        }
+      ],
+      "total_records": 1,
+      "current_page": 1,
+      "total_pages": 1
+    }
+  }
+}

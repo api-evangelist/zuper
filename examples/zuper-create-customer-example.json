@@ -1,0 +1,57 @@
+{
+  "description": "Example: Create a new customer in Zuper",
+  "request": {
+    "method": "POST",
+    "url": "https://{dc_region}.zuperpro.com/api/customers",
+    "headers": {
+      "x-api-key": "YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "customer_first_name": "Jane",
+      "customer_last_name": "Doe",
+      "customer_email": "jane.doe@example.com",
+      "customer_company_name": "Acme Corp",
+      "customer_contact_no": {
+        "mobile": "+1-555-123-4567",
+        "home": "",
+        "work": "+1-555-987-6543"
+      },
+      "customer_address": {
+        "street": "123 Main Street",
+        "city": "Austin",
+        "state": "TX",
+        "country": "US",
+        "zip_code": "78701",
+        "geo_coordinates": {
+          "latitude": 30.2672,
+          "longitude": -97.7431
+        }
+      },
+      "customer_billing_address": {
+        "street": "123 Main Street",
+        "city": "Austin",
+        "state": "TX",
+        "country": "US",
+        "zip_code": "78701"
+      },
+      "customer_tags": ["commercial", "priority"],
+      "custom_fields": [
+        {
+          "label": "Account Manager",
+          "value": "John Smith",
+          "type": "TEXT",
+          "module_name": "CUSTOMER"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "type": "success",
+      "message": "Customer created successfully",
+      "customer_uid": "9ab12cd3-ef45-6789-abcd-ef0123456789"
+    }
+  }
+}

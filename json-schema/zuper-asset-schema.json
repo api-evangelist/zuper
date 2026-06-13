@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zuper/main/json-schema/zuper-asset-schema.json",
+  "title": "Zuper Asset",
+  "description": "An asset record in the Zuper platform",
+  "type": "object",
+  "required": ["asset_code", "asset_name"],
+  "properties": {
+    "asset_uid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the asset"
+    },
+    "asset_code": {
+      "type": "string",
+      "description": "Unique code identifying the asset"
+    },
+    "asset_name": {
+      "type": "string",
+      "description": "Display name of the asset"
+    },
+    "asset_serial_number": {
+      "type": "string",
+      "description": "Serial number of the asset"
+    },
+    "asset_category": {
+      "type": "string",
+      "description": "UID of the asset category"
+    },
+    "asset_product": {
+      "type": "string",
+      "description": "UID of the associated product"
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the asset was purchased"
+    },
+    "warranty_expiry_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the asset warranty expires"
+    },
+    "placed_in_service": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the asset was placed in service"
+    },
+    "useful_life": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["MONTHS", "YEARS", "DAYS"]
+        },
+        "value": {
+          "type": "integer"
+        }
+      },
+      "description": "Expected useful life of the asset"
+    },
+    "asset_parts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "quantity": { "type": "integer" },
+          "serial_nos": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "product_id": { "type": "string" }
+        }
+      },
+      "description": "Component parts of the asset"
+    },
+    "customer": {
+      "type": "string",
+      "description": "UID of the associated customer"
+    },
+    "property": {
+      "type": "string",
+      "description": "UID of the associated property"
+    },
+    "organization": {
+      "type": "string",
+      "description": "UID of the associated organization"
+    },
+    "asset_inspection_form": {
+      "type": "string",
+      "description": "UID of the associated inspection form"
+    },
+    "parent_asset": {
+      "type": "string",
+      "description": "UID of the parent asset (for hierarchical assets)"
+    },
+    "asset_location": {
+      "$ref": "#/definitions/Address"
+    },
+    "billing_address": {
+      "$ref": "#/definitions/Address"
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Whether the asset is currently active"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp (ISO 8601, UTC)"
+    }
+  },
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "country": { "type": "string" },
+        "zip_code": { "type": "string" },
+        "geo_coordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "number" },
+            "longitude": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zuper/main/json-schema/zuper-customer-schema.json",
+  "title": "Zuper Customer",
+  "description": "A customer record in the Zuper platform",
+  "type": "object",
+  "properties": {
+    "customer_uid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the customer"
+    },
+    "customer_first_name": {
+      "type": "string",
+      "description": "Customer first name"
+    },
+    "customer_last_name": {
+      "type": "string",
+      "description": "Customer last name"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Customer email address"
+    },
+    "customer_company_name": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "customer_contact_no": {
+      "type": "object",
+      "properties": {
+        "mobile": { "type": "string" },
+        "home": { "type": "string" },
+        "work": { "type": "string" }
+      },
+      "description": "Contact phone numbers"
+    },
+    "customer_tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags associated with the customer"
+    },
+    "customer_address": {
+      "$ref": "#/definitions/Address"
+    },
+    "customer_billing_address": {
+      "$ref": "#/definitions/Address"
+    },
+    "customer_organization": {
+      "type": "object",
+      "properties": {
+        "organization_uid": { "type": "string", "format": "uuid" },
+        "organization_name": { "type": "string" },
+        "organization_email": { "type": "string", "format": "email" }
+      }
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "type": { "type": "string" },
+          "module_name": { "type": "string" }
+        }
+      }
+    },
+    "has_sla": {
+      "type": "boolean",
+      "description": "Whether this customer has a service level agreement"
+    },
+    "accounts": {
+      "type": "object",
+      "properties": {
+        "ltv": { "type": "integer", "description": "Lifetime value" },
+        "receivables": { "type": "integer" },
+        "credits": { "type": "integer" }
+      }
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Whether the customer is active"
+    },
+    "is_portal_enabled": {
+      "type": "boolean",
+      "description": "Whether the customer portal is enabled"
+    },
+    "has_card_on_file": {
+      "type": "boolean",
+      "description": "Whether a payment card is on file"
+    },
+    "tax": {
+      "type": "object",
+      "properties": {
+        "tax_exempt": { "type": "boolean" }
+      }
+    },
+    "no_of_jobs": {
+      "type": "integer",
+      "description": "Total number of jobs for this customer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp (ISO 8601, UTC)"
+    }
+  },
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "country": { "type": "string" },
+        "zip_code": { "type": "string" },
+        "geo_coordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "number" },
+            "longitude": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

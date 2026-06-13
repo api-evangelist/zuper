@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zuper/main/json-schema/zuper-job-schema.json",
+  "title": "Zuper Job",
+  "description": "A field service job in the Zuper platform",
+  "type": "object",
+  "required": ["job_title", "job_category"],
+  "properties": {
+    "job_uid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the job"
+    },
+    "job_title": {
+      "type": "string",
+      "description": "Title or name of the job"
+    },
+    "job_category": {
+      "type": "string",
+      "description": "UID of the job category"
+    },
+    "job_priority": {
+      "type": "string",
+      "enum": ["URGENT", "HIGH", "MEDIUM", "LOW"],
+      "description": "Priority level of the job"
+    },
+    "job_type": {
+      "type": "string",
+      "enum": ["NEW", "REVISIT"],
+      "description": "Type of job"
+    },
+    "job_description": {
+      "type": "string",
+      "description": "Detailed description of the job"
+    },
+    "job_tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags associated with the job"
+    },
+    "scheduled_start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled start date and time (ISO 8601, UTC)"
+    },
+    "scheduled_end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled end date and time (ISO 8601, UTC)"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Job due date (ISO 8601, UTC)"
+    },
+    "assigned_to": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "UIDs of users assigned to the job"
+    },
+    "assigned_to_team": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "UIDs of teams assigned to the job"
+    },
+    "customer_uid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UID of the associated customer"
+    },
+    "assets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "UIDs of assets associated with the job"
+    },
+    "products": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "UIDs of products used in the job"
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required skills for the job"
+    },
+    "service_task": {
+      "type": "string",
+      "description": "UID of associated service task"
+    },
+    "service_contract": {
+      "type": "string",
+      "description": "UID of associated service contract"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "type": { "type": "string" },
+          "module_name": { "type": "string" }
+        }
+      },
+      "description": "Custom field values for the job"
+    },
+    "work_order_number": {
+      "type": "string",
+      "description": "Auto-generated work order number"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp (ISO 8601, UTC)"
+    }
+  }
+}

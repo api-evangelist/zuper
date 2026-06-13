@@ -1,0 +1,225 @@
+name: Zuper API Vocabulary
+description: Domain terms and concepts used in the Zuper field service management platform API
+url: https://developers.zuper.co/
+version: '1.0'
+terms:
+  - term: job
+    label: Job
+    description: >-
+      The primary work unit in Zuper. A job represents a service task assigned to field
+      technicians, with scheduling, customer, asset, and product associations. Jobs have
+      a work order number, priority, status, and can be grouped into routes or projects.
+    properties:
+      - job_uid
+      - job_title
+      - job_category
+      - job_priority
+      - job_type
+      - work_order_number
+      - scheduled_start_time
+      - scheduled_end_time
+      - due_date
+      - assigned_to
+      - assigned_to_team
+
+  - term: customer
+    label: Customer
+    description: >-
+      An individual or business entity that receives services. Customers have contact
+      information, addresses, job history, financial accounts (LTV, receivables, credits),
+      and can be associated with organizations and properties.
+    properties:
+      - customer_uid
+      - customer_first_name
+      - customer_last_name
+      - customer_email
+      - customer_company_name
+      - customer_contact_no
+      - customer_address
+      - customer_billing_address
+      - no_of_jobs
+
+  - term: organization
+    label: Organization
+    description: >-
+      A company or account entity that groups multiple customers. Organizations represent
+      business accounts and can own properties, have billing addresses, and be linked to
+      multiple customer contacts.
+    properties:
+      - organization_uid
+      - organization_name
+      - organization_email
+      - organization_address
+
+  - term: asset
+    label: Asset
+    description: >-
+      A physical piece of equipment or property managed by Zuper. Assets have lifecycle
+      metadata (purchase date, warranty expiry, useful life), can be inspected via forms,
+      have part hierarchies, and are linked to customers or properties.
+    properties:
+      - asset_uid
+      - asset_code
+      - asset_name
+      - asset_serial_number
+      - purchase_date
+      - warranty_expiry_date
+      - placed_in_service
+      - useful_life
+      - asset_parts
+
+  - term: invoice
+    label: Invoice
+    description: >-
+      A billing document issued to a customer for services rendered. Invoices contain
+      line items, taxes, discounts, payment terms, and can be linked to jobs, estimates,
+      or service contracts.
+    properties:
+      - invoice_uid
+      - reference_no
+      - invoice_date
+      - due_date
+      - line_items
+      - sub_total
+      - payment_term
+      - payment_mode
+
+  - term: purchase_order
+    label: Purchase Order
+    description: >-
+      A document sent to a vendor to authorize the purchase of products or services.
+      Purchase orders are linked to vendors, contain line items, and follow a status
+      workflow from draft through approval and fulfillment.
+    properties:
+      - purchase_order_uid
+      - vendor
+      - status
+
+  - term: timesheet
+    label: Timesheet
+    description: >-
+      A record of time worked by a field technician. Timesheets capture clock-in/clock-out
+      times, job associations, locations, and can be summarized across date ranges for
+      payroll and billing purposes.
+    properties:
+      - timesheet_uid
+      - user
+      - clock_in
+      - clock_out
+      - job
+
+  - term: route
+    label: Route
+    description: >-
+      An ordered collection of jobs assigned to a technician or team for a given period.
+      Routes support optimization, job reordering, conflict detection, and can be cloned
+      or locked to prevent changes.
+    properties:
+      - route_uid
+      - assigned_to
+      - jobs
+      - is_locked
+
+  - term: proposal
+    label: Proposal
+    description: >-
+      A sales document presented to a customer outlining services and pricing before
+      work begins. Proposals can contain packages and templates, be sent to customers
+      for approval, and convert to jobs or invoices.
+    properties:
+      - proposal_uid
+      - customer
+      - status
+      - line_items
+
+  - term: quote
+    label: Quote (Estimate)
+    description: >-
+      A cost estimate document sent to customers. Also referred to as an estimate in
+      the API (estimate_uid). Quotes can be accepted, declined, converted to jobs, and
+      tracked through a status workflow.
+    properties:
+      - estimate_uid
+      - customer
+      - status
+      - line_items
+
+  - term: service_contract
+    label: Service Contract
+    description: >-
+      A recurring service agreement between Zuper and a customer. Service contracts
+      define scheduled maintenance intervals, coverage scope, pricing, and renewal terms.
+      Contracts can be linked to jobs and assets.
+    properties:
+      - service_contract_uid
+      - customer
+      - start_date
+      - end_date
+      - renewal_date
+
+  - term: property
+    label: Property
+    description: >-
+      A physical location or site associated with a customer where services are rendered.
+      Properties have addresses, can contain assets, and can be assigned service tasks.
+    properties:
+      - property_uid
+      - property_name
+      - property_address
+      - customer
+
+  - term: webhook
+    label: Webhook
+    description: >-
+      A registered HTTP callback that Zuper calls when specific platform events occur.
+      Webhooks support event subscriptions for jobs, customers, invoices, and other
+      entities and can be activated/deactivated without deletion.
+    properties:
+      - webhook_uid
+      - name
+      - url
+      - events
+      - is_active
+
+  - term: x-api-key
+    label: API Key Header
+    description: >-
+      The HTTP header name used for API key authentication in all Zuper REST API requests.
+      API keys are created in Zuper Settings > Developer Hub > API Keys and inherit the
+      permissions of the user they are created for. Read-only keys restrict access to
+      GET requests only.
+
+  - term: dc_region
+    label: Data Center Region
+    description: >-
+      A region identifier included in the base URL for Zuper API requests
+      (e.g., https://{dc_region}.zuperpro.com/api). The correct dc_region for each
+      account is returned by POSTing to https://accounts.zuperpro.com/api/config.
+
+  - term: work_order_number
+    label: Work Order Number
+    description: >-
+      A human-readable auto-generated sequential identifier for jobs (e.g., WO-00001042).
+      Used for customer-facing communication and internal tracking. Distinct from job_uid
+      which is a system UUID.
+
+  - term: business_unit
+    label: Business Unit (Trade Type)
+    description: >-
+      A classification for jobs, invoices, and other records representing a line of
+      business or trade type (e.g., HVAC, Plumbing, Electrical). Referenced as bu_uid
+      in API payloads.
+
+  - term: custom_field
+    label: Custom Field
+    description: >-
+      User-defined metadata fields that can be attached to jobs, customers, assets,
+      and other entities. Each custom field has a label, value, type (TEXT, NUMBER,
+      DATE, etc.), and module_name indicating which entity type it belongs to.
+
+  - term: ppm
+    label: Planned Preventive Maintenance
+    description: >-
+      A scheduled recurring maintenance job type in Zuper. PPM jobs are generated
+      automatically based on a maintenance schedule and can be linked to service
+      contracts and assets.

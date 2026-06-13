@@ -1,0 +1,286 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "zuper": "https://developers.zuper.co/vocabulary#",
+
+    "job_uid": "@id",
+    "customer_uid": "@id",
+    "asset_uid": "@id",
+    "invoice_uid": "@id",
+    "organization_uid": "@id",
+    "property_uid": "@id",
+    "webhook_uid": "@id",
+    "purchase_order_uid": "@id",
+    "team_uid": "@id",
+    "user_uid": "@id",
+    "project_uid": "@id",
+    "vendor_uid": "@id",
+
+    "Job": {
+      "@id": "zuper:Job",
+      "@type": "@id"
+    },
+    "job_title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "job_description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "job_priority": {
+      "@id": "zuper:jobPriority",
+      "@type": "xsd:string"
+    },
+    "job_type": {
+      "@id": "zuper:jobType",
+      "@type": "xsd:string"
+    },
+    "job_category": {
+      "@id": "zuper:jobCategory",
+      "@type": "@id"
+    },
+    "work_order_number": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "scheduled_start_time": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "scheduled_end_time": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "due_date": {
+      "@id": "schema:expires",
+      "@type": "xsd:dateTime"
+    },
+    "assigned_to": {
+      "@id": "schema:agent",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "assigned_to_team": {
+      "@id": "schema:member",
+      "@type": "@id",
+      "@container": "@set"
+    },
+
+    "Customer": {
+      "@id": "schema:Person",
+      "@type": "@id"
+    },
+    "customer_first_name": {
+      "@id": "schema:givenName",
+      "@type": "xsd:string"
+    },
+    "customer_last_name": {
+      "@id": "schema:familyName",
+      "@type": "xsd:string"
+    },
+    "customer_email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "customer_company_name": {
+      "@id": "schema:worksFor",
+      "@type": "xsd:string"
+    },
+    "customer_contact_no": {
+      "@id": "schema:telephone"
+    },
+    "customer_address": {
+      "@id": "schema:address"
+    },
+    "customer_billing_address": {
+      "@id": "schema:billingAddress"
+    },
+    "no_of_jobs": {
+      "@id": "zuper:jobCount",
+      "@type": "xsd:integer"
+    },
+    "is_active": {
+      "@id": "schema:isAccessibleForFree",
+      "@type": "xsd:boolean"
+    },
+    "is_portal_enabled": {
+      "@id": "zuper:isPortalEnabled",
+      "@type": "xsd:boolean"
+    },
+    "has_card_on_file": {
+      "@id": "zuper:hasCardOnFile",
+      "@type": "xsd:boolean"
+    },
+    "customer_tags": {
+      "@id": "schema:keywords",
+      "@container": "@set"
+    },
+
+    "Organization": {
+      "@id": "schema:Organization",
+      "@type": "@id"
+    },
+    "organization_name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "organization_email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "organization_address": {
+      "@id": "schema:address"
+    },
+
+    "Asset": {
+      "@id": "schema:Product",
+      "@type": "@id"
+    },
+    "asset_code": {
+      "@id": "schema:productID",
+      "@type": "xsd:string"
+    },
+    "asset_name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "asset_serial_number": {
+      "@id": "schema:serialNumber",
+      "@type": "xsd:string"
+    },
+    "purchase_date": {
+      "@id": "schema:purchaseDate",
+      "@type": "xsd:date"
+    },
+    "warranty_expiry_date": {
+      "@id": "zuper:warrantyExpiryDate",
+      "@type": "xsd:date"
+    },
+    "placed_in_service": {
+      "@id": "zuper:placedInService",
+      "@type": "xsd:date"
+    },
+    "useful_life": {
+      "@id": "zuper:usefulLife"
+    },
+
+    "Invoice": {
+      "@id": "schema:Invoice",
+      "@type": "@id"
+    },
+    "reference_no": {
+      "@id": "schema:confirmationNumber",
+      "@type": "xsd:string"
+    },
+    "invoice_date": {
+      "@id": "schema:paymentDue",
+      "@type": "xsd:dateTime"
+    },
+    "due_date_invoice": {
+      "@id": "schema:paymentDueDate",
+      "@type": "xsd:dateTime"
+    },
+    "line_items": {
+      "@id": "schema:itemListElement",
+      "@container": "@list"
+    },
+    "sub_total": {
+      "@id": "schema:totalPaymentDue"
+    },
+    "payment_term": {
+      "@id": "schema:paymentMethod",
+      "@type": "xsd:string"
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@type": "@id"
+    },
+    "street": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "zip_code": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "geo_coordinates": {
+      "@id": "schema:geo"
+    },
+    "latitude": {
+      "@id": "schema:latitude",
+      "@type": "xsd:float"
+    },
+    "longitude": {
+      "@id": "schema:longitude",
+      "@type": "xsd:float"
+    },
+
+    "Webhook": {
+      "@id": "zuper:Webhook",
+      "@type": "@id"
+    },
+    "webhook_url": {
+      "@id": "schema:url",
+      "@type": "xsd:anyURI"
+    },
+    "events": {
+      "@id": "zuper:subscribedEvents",
+      "@container": "@set"
+    },
+
+    "Project": {
+      "@id": "schema:Project",
+      "@type": "@id"
+    },
+    "project_name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+
+    "custom_fields": {
+      "@id": "zuper:customFields",
+      "@container": "@set"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "dc_api_url": {
+      "@id": "zuper:dcApiUrl",
+      "@type": "xsd:anyURI"
+    },
+    "x_api_key": {
+      "@id": "zuper:apiKey",
+      "@type": "xsd:string"
+    },
+    "business_unit": {
+      "@id": "zuper:businessUnit",
+      "@type": "@id"
+    },
+    "service_contract": {
+      "@id": "zuper:serviceContract",
+      "@type": "@id"
+    }
+  }
+}

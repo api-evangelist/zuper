@@ -1,0 +1,44 @@
+{
+  "description": "Example: Create a new HVAC maintenance job in Zuper",
+  "request": {
+    "method": "POST",
+    "url": "https://{dc_region}.zuperpro.com/api/jobs",
+    "headers": {
+      "x-api-key": "YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "job_title": "Annual HVAC Maintenance",
+      "job_category": "a3f82c10-1234-5678-abcd-ef0123456789",
+      "job_priority": "MEDIUM",
+      "job_type": "NEW",
+      "job_description": "Annual preventive maintenance on rooftop HVAC unit. Check filters, belts, coolant levels.",
+      "job_tags": ["hvac", "maintenance", "annual"],
+      "scheduled_start_time": "2026-06-20T09:00:00Z",
+      "scheduled_end_time": "2026-06-20T12:00:00Z",
+      "due_date": "2026-06-20T17:00:00Z",
+      "customer_uid": "4185a6c0-58d0-11e8-a06a-f1f7062602d6",
+      "assigned_to": ["b7c9d2e0-aaaa-bbbb-cccc-ddddeeee0001"],
+      "assigned_to_team": [],
+      "assets": ["c1d2e3f4-0001-0002-0003-000400050006"],
+      "products": [],
+      "custom_fields": [
+        {
+          "label": "Contract Reference",
+          "value": "SVC-2026-0042",
+          "type": "TEXT",
+          "module_name": "JOB"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "type": "success",
+      "message": "New Job Created successfully",
+      "job_uid": "6fa6fec0-d6f9-11ee-bf60-d1e9e2f3bc94",
+      "customer_uid": "4185a6c0-58d0-11e8-a06a-f1f7062602d6"
+    }
+  }
+}
