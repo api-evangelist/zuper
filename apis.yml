@@ -1,0 +1,97 @@
+name: Zuper
+description: >-
+  Zuper is an intelligent field service management platform that consolidates
+  job scheduling, dispatching, customer management, invoicing, timesheets, and
+  field team operations into a single AI-powered operating system. The Zuper
+  REST API gives developers programmatic access to all platform data, enabling
+  seamless integration with third-party systems across jobs, assets, projects,
+  inventory, contracts, and financials. Authentication is handled via API keys
+  transmitted through the x-api-key header, with region-specific base URLs
+  discovered at runtime. The API supports over 300 endpoints organized across
+  functional areas including customers, jobs, scheduling, proposals, purchase
+  orders, timesheets, teams, and communications. Zuper also provides a
+  server-side SDK via npm (zuper-sdk) and a Model Context Protocol (MCP) server
+  for AI agent integration.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/zuper/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Field Service Management
+  - Scheduling
+  - Dispatching
+  - Invoicing
+  - Timesheets
+  - Asset Management
+  - Work Orders
+  - Customer Management
+  - Inventory
+  - Projects
+apis:
+  - name: Zuper REST API
+    description: >-
+      The Zuper REST API provides access to all field service management data
+      and operations, including job creation and management, scheduling, route
+      optimization, customer and organization management, inventory, purchase
+      orders, invoices, proposals, quotes, timesheets, assets, contracts, teams,
+      and communications. The API uses API key authentication via the x-api-key
+      header and communicates over HTTPS using JSON with ISO 8601 date formats.
+      Region-specific base URLs are retrieved dynamically from the accounts
+      endpoint.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.zuper.co/
+    baseURL: https://accounts.zuperpro.com/api
+    tags:
+      - Field Service Management
+      - Jobs
+      - Scheduling
+      - Dispatching
+      - Invoicing
+      - Timesheets
+      - Assets
+      - Inventory
+    properties:
+      - type: Documentation
+        url: https://developers.zuper.co/docs
+      - type: OpenAPI
+        url: https://developers.zuper.co/llms.txt
+      - type: GettingStarted
+        url: https://developers.zuper.co/docs/getting-started
+      - type: Reference
+        url: https://developers.zuper.co/reference
+      - type: Changelog
+        url: https://developers.zuper.co/changelog
+      - type: Authentication
+        url: https://developers.zuper.co/reference/generate-api-key
+    contact:
+      - FN: Zuper Support
+        url: https://developers.zuper.co/discuss
+        email: ''
+common:
+  - type: Website
+    url: https://www.zuper.co/
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GitHubOrg
+    url: https://github.com/ZuperHQ
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/zuperco/
+  - type: Blog
+    url: https://www.zuper.co/blog
+  - type: Pricing
+    url: https://www.zuper.co/pricing
+  - type: StatusPage
+    url: https://status.zuper.co/
+  - type: X
+    url: https://x.com/zuperinc
+  - type: Plans
+    url: plans/zuper-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/zuper-rate-limits.yml
+  - type: FinOps
+    url: finops/zuper-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

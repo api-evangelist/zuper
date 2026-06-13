@@ -1,0 +1,82 @@
+name: Zuper FinOps Framework
+description: >-
+  FinOps considerations for organizations consuming the Zuper field service
+  management API. Zuper pricing is seat-based (per user per month) across
+  three tiers — Starter, Growth, and Enterprise — with all pricing determined
+  via custom sales quotes. There are no publicly documented per-API-call or
+  consumption-based charges. Cost optimization focuses on right-sizing user
+  seat counts and leveraging the appropriate plan tier for required features.
+specificationVersion: '1.0'
+url: https://www.zuper.co/pricing
+framework: FinOps Framework
+version: '1.0'
+focus:
+  schema: FOCUS 1.0
+  currency: USD
+costModel:
+  type: seat-based
+  billingPeriod: monthly
+  annualDiscountAvailable: true
+  trialPeriodDays: 14
+  pricingTransparency: opaque
+  contactSalesRequired: true
+  estimatedRange:
+    low: 35
+    high: 150
+    unit: per user / month
+    currency: USD
+    source: third-party-review-sites
+cost_categories:
+  - name: User Seats
+    description: >-
+      The primary cost driver is the number of active user seats (technicians,
+      dispatchers, managers) on the chosen plan. All three plans charge per
+      user per month. Right-sizing active seat counts is the primary lever
+      for cost control.
+    type: recurring
+    unit: per user / month
+  - name: Plan Tier
+    description: >-
+      Feature requirements determine which plan tier is needed. Upgrading
+      from Starter to Growth or Growth to Enterprise increases per-seat cost
+      but unlocks capabilities such as inventory tracking, asset management,
+      and full API access. Teams should audit feature utilization to avoid
+      overpaying for unused tier capabilities.
+    type: recurring
+  - name: Integration API Usage
+    description: >-
+      Zuper does not charge separately for API calls as of June 2026. API
+      access is included as part of the subscription, particularly for
+      Enterprise tier customers. There are no documented per-call or
+      consumption-based API fees.
+    type: included
+  - name: Add-On Modules
+    description: >-
+      Certain modules such as the Commissions module, GAF measurements,
+      custom financing markup, and advanced analytics may be available as
+      paid add-ons. Contact Zuper sales for current add-on pricing.
+    type: variable
+    contactSalesRequired: true
+optimization_recommendations:
+  - title: Audit Active Seat Count Quarterly
+    description: >-
+      Deactivate seats for seasonal or departed employees promptly. Zuper
+      charges per active user, so unused seats directly increase costs.
+  - title: Match Plan Tier to Feature Needs
+    description: >-
+      Evaluate whether your team uses Growth or Enterprise-only features.
+      Teams that only need basic scheduling and invoicing may not need to
+      pay for a higher tier.
+  - title: Use Read-Only API Keys for Reporting
+    description: >-
+      Leverage read-only API keys for data export and reporting integrations
+      to reduce risk and ensure compliance without requiring elevated access.
+  - title: Negotiate Annual Contracts
+    description: >-
+      Zuper typically offers discounts for annual contracts versus monthly
+      billing. Multi-year agreements may provide further cost reductions
+      for stable, large teams.
+  - title: Leverage 14-Day Trial
+    description: >-
+      Use the free 14-day trial to validate integration requirements and
+      feature fit before committing to a paid plan to avoid switching costs.

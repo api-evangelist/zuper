@@ -1,0 +1,51 @@
+name: Zuper API Rate Limits
+description: >-
+  Zuper does not publicly document specific rate limit thresholds in their
+  developer portal as of June 2026. The API uses HTTPS with API key
+  authentication via the x-api-key header. Rate limits are enforced server-side
+  and vary by plan tier. Developers experiencing rate limit errors should
+  contact Zuper support or consult the developer discussions forum at
+  developers.zuper.co/discuss. A read-only API mode is available that
+  returns 401 errors if write operations are attempted.
+specificationVersion: '0.1'
+url: https://developers.zuper.co/docs
+limits:
+  - name: API Key Authentication
+    description: >-
+      All requests must include a valid API key in the x-api-key request
+      header. Keys are generated from Settings > Developer Hub > API Keys
+      within the Zuper dashboard. Multiple keys can be created for different
+      integration purposes.
+    type: authentication
+    header: x-api-key
+  - name: HTTPS Only
+    description: >-
+      All API requests must be made over HTTPS. HTTP requests are not
+      supported. The platform enforces encrypted transport for all
+      API communications.
+    type: transport
+    protocol: HTTPS
+  - name: Region-Specific Base URL
+    description: >-
+      Each Zuper account has a region-specific API base URL that must be
+      discovered via a POST request to https://accounts.zuperpro.com/api/config
+      before making other API calls. The response dc_api_url field contains
+      the correct base URL for the account.
+    type: routing
+    discoveryEndpoint: https://accounts.zuperpro.com/api/config
+  - name: Read-Only API Mode
+    description: >-
+      Zuper supports a read-only API key mode. When using a read-only key,
+      any attempt to create or update records returns a 401 Unauthorized
+      error. This is useful for audit integrations and data export scenarios.
+    type: access-control
+    errorCode: 401
+  - name: Rate Limit Details
+    description: >-
+      Specific per-minute or per-hour request limits are not publicly
+      documented. Contact Zuper sales or support for rate limit details
+      applicable to your subscription plan. Enterprise plans may have
+      elevated limits compared to Starter and Growth plans.
+    type: throughput
+    documented: false
+    contactUrl: https://developers.zuper.co/discuss

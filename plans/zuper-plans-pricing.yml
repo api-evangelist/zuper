@@ -1,0 +1,78 @@
+name: Zuper Plans and Pricing
+description: >-
+  Zuper offers three subscription tiers — Starter, Growth, and Enterprise —
+  all priced per user per month with custom quotes available from sales.
+  A 14-day free trial is available. Pricing is not published publicly and
+  requires contacting the Zuper sales team for an exact quote based on team
+  size and required modules.
+specificationVersion: '0.1'
+url: https://www.zuper.co/pricing
+plans:
+  - name: Starter
+    description: >-
+      Entry-level plan covering core field service operations including job
+      management, scheduling, technician tracking, invoicing, and payments.
+      Suited for smaller teams getting started with field service management.
+    url: https://www.zuper.co/pricing
+    price: Contact Sales
+    unit: per user / month
+    currency: USD
+    trial:
+      days: 14
+      requiresCreditCard: false
+    features:
+      - Work order management
+      - Intelligent dispatching (basic)
+      - Field service scheduling
+      - Location services
+      - Timesheet management
+      - Invoicing and payments
+      - Mobile app for field technicians
+      - Customer management
+  - name: Growth
+    description: >-
+      Mid-tier plan that adds advanced dispatching, recurring routes, service
+      territories, multi-warehouse inventory tracking with serial numbers,
+      custom workflows, proposals, and project management on top of all
+      Starter features.
+    url: https://www.zuper.co/pricing
+    price: Contact Sales
+    unit: per user / month
+    currency: USD
+    trial:
+      days: 14
+      requiresCreditCard: false
+    features:
+      - All Starter features
+      - Intelligent dispatching with recurring routes
+      - Service territory management
+      - Inventory with serial numbers
+      - Multi-warehouse inventory tracking
+      - Custom workflow builder
+      - Proposals
+      - Project management
+      - Route optimization
+  - name: Enterprise
+    description: >-
+      Top-tier plan with all Growth features plus asset lifecycle management,
+      digital contract management, advanced analytics, API access, MCP server
+      integration, and dedicated support. Designed for larger organizations
+      with complex multi-team field service operations.
+    url: https://www.zuper.co/pricing
+    price: Contact Sales
+    unit: per user / month
+    currency: USD
+    trial:
+      days: 14
+      requiresCreditCard: false
+    features:
+      - All Growth features
+      - Asset lifecycle management
+      - Digital contract management
+      - Advanced analytics and reporting
+      - Full REST API access
+      - Model Context Protocol (MCP) server
+      - Role-based access controls
+      - Trade types and business units
+      - Dedicated account manager
+      - Priority support
