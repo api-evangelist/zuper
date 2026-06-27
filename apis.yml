@@ -61,7 +61,7 @@ apis:
         url: https://developers.zuper.co/docs/getting-started
       - type: Reference
         url: https://developers.zuper.co/reference
-      - type: Changelog
+      - type: ChangeLog
         url: https://developers.zuper.co/changelog
       - type: Authentication
         url: https://developers.zuper.co/reference/generate-api-key
