@@ -70,6 +70,12 @@ apis:
         url: https://developers.zuper.co/discuss
         email: ''
 common:
+  - type: TrustCenter
+    url: security/zuper-trust-center.yml
+  - type: DomainSecurity
+    url: security/zuper-domain-security.yml
+  - type: Authentication
+    url: authentication/zuper-authentication.yml
   - type: Website
     url: https://www.zuper.co/
   - type: Documentation
