@@ -70,6 +70,8 @@ apis:
         url: https://developers.zuper.co/discuss
         email: ''
 common:
+  - type: AgenticAccess
+    url: agentic-access/zuper-agentic-access.yml
   - type: TrustCenter
     url: security/zuper-trust-center.yml
   - type: DomainSecurity
