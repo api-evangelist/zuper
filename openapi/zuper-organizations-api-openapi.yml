@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: Zuper REST Assets Organizations API
+  description: The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.
+  version: 1.0.0
+  contact:
+    name: Zuper Developer Support
+    url: https://developers.zuper.co/discuss
+  x-api-evangelist-ratings:
+    design: 7
+    consistency: 7
+    documentation: 8
+servers:
+- url: https://{dc_region}.zuperpro.com/api
+  description: Region-specific API server (dc_region obtained from accounts endpoint)
+  variables:
+    dc_region:
+      default: us1
+      description: Data-center region identifier returned by the config endpoint
+- url: https://accounts.zuperpro.com/api
+  description: Accounts / configuration endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organizations
+  description: Customer organization (account) management
+paths:
+  /organization:
+    get:
+      summary: Get Organizations
+      operationId: getOrganizations
+      description: Retrieve a paginated list of customer organizations.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/CountParam'
+      - $ref: '#/components/parameters/SortParam'
+      responses:
+        '200':
+          description: Paginated list of organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Organization
+      operationId: createOrganization
+      description: Create a new customer organization.
+      tags:
+      - Organizations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                organization_email:
+                  type: string
+                  format: email
+                organization_address:
+                  $ref: '#/components/schemas/AddressObject'
+                organization_billing_address:
+                  $ref: '#/components/schemas/AddressObject'
+      responses:
+        '200':
+          description: Organization created successfully
+  /organization/{organization_uid}:
+    get:
+      summary: Get Organization Details
+      operationId: getOrganizationDetails
+      description: Retrieve details for a specific organization.
+      tags:
+      - Organizations
+      parameters:
+      - name: organization_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Organization details
+        '404':
+          description: Not found
+    put:
+      summary: Update Organization
+      operationId: updateOrganization
+      description: Update an existing organization record.
+      tags:
+      - Organizations
+      parameters:
+      - name: organization_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated successfully
+    delete:
+      summary: Delete Organization
+      operationId: deleteOrganization
+      description: Delete an organization record.
+      tags:
+      - Organizations
+      parameters:
+      - name: organization_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Deleted successfully
+components:
+  schemas:
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+  parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key generated from Zuper Settings > Developer Hub > API Keys

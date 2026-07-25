@@ -1,0 +1,175 @@
+openapi: 3.0.3
+info:
+  title: Zuper REST Assets Webhooks API
+  description: The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.
+  version: 1.0.0
+  contact:
+    name: Zuper Developer Support
+    url: https://developers.zuper.co/discuss
+  x-api-evangelist-ratings:
+    design: 7
+    consistency: 7
+    documentation: 8
+servers:
+- url: https://{dc_region}.zuperpro.com/api
+  description: Region-specific API server (dc_region obtained from accounts endpoint)
+  variables:
+    dc_region:
+      default: us1
+      description: Data-center region identifier returned by the config endpoint
+- url: https://accounts.zuperpro.com/api
+  description: Accounts / configuration endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Webhooks
+  description: Webhook registration and event subscription management
+paths:
+  /webhooks:
+    get:
+      summary: Get Webhooks
+      operationId: getWebhooks
+      description: Retrieve all configured webhooks.
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        webhook_uid:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        url:
+                          type: string
+                        is_active:
+                          type: boolean
+    post:
+      summary: Create a Webhook
+      operationId: createWebhook
+      description: Register a new webhook endpoint.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - url
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+                events:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Webhook created successfully
+        '400':
+          description: Bad request
+  /webhooks/{webhook_uid}:
+    get:
+      summary: Get Webhook Details
+      operationId: getWebhookDetails
+      description: Retrieve details of a specific webhook.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Webhook details
+        '404':
+          description: Not found
+    put:
+      summary: Update Webhook
+      operationId: updateWebhook
+      description: Update an existing webhook configuration.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Webhook updated successfully
+    delete:
+      summary: Delete Webhook
+      operationId: deleteWebhook
+      description: Delete a webhook registration.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Webhook deleted successfully
+  /webhooks/{webhook_uid}/activate:
+    put:
+      summary: Activate/Deactivate Webhook
+      operationId: activateWebhook
+      description: Toggle the active status of a webhook.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_active:
+                  type: boolean
+      responses:
+        '200':
+          description: Webhook status updated
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key generated from Zuper Settings > Developer Hub > API Keys

@@ -1,0 +1,346 @@
+openapi: 3.0.3
+info:
+  title: Zuper REST Assets API
+  description: The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.
+  version: 1.0.0
+  contact:
+    name: Zuper Developer Support
+    url: https://developers.zuper.co/discuss
+  x-api-evangelist-ratings:
+    design: 7
+    consistency: 7
+    documentation: 8
+servers:
+- url: https://{dc_region}.zuperpro.com/api
+  description: Region-specific API server (dc_region obtained from accounts endpoint)
+  variables:
+    dc_region:
+      default: us1
+      description: Data-center region identifier returned by the config endpoint
+- url: https://accounts.zuperpro.com/api
+  description: Accounts / configuration endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Assets
+  description: Asset tracking — lifecycle management, inspection forms, bulk operations, and history
+paths:
+  /assets:
+    get:
+      summary: Get All Assets
+      operationId: getAllAssets
+      description: Retrieve a paginated list of assets.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/CountParam'
+      - $ref: '#/components/parameters/SortParam'
+      responses:
+        '200':
+          description: Paginated list of assets
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PaginatedResponse'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Asset'
+        '400':
+          description: Bad request
+    post:
+      summary: Create Asset
+      operationId: createAsset
+      description: Create a new asset record.
+      tags:
+      - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - asset
+              properties:
+                asset:
+                  type: object
+                  required:
+                  - asset_code
+                  - asset_name
+                  properties:
+                    asset_code:
+                      type: string
+                    asset_name:
+                      type: string
+                    purchase_date:
+                      type: string
+                      format: date
+                    warranty_expiry_date:
+                      type: string
+                      format: date
+                    placed_in_service:
+                      type: string
+                      format: date
+                    useful_life:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                          - MONTHS
+                          - YEARS
+                          - DAYS
+                        value:
+                          type: integer
+                    asset_category:
+                      type: string
+                    asset_product:
+                      type: string
+                    asset_serial_number:
+                      type: string
+                    asset_parts:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          quantity:
+                            type: integer
+                          serial_nos:
+                            type: array
+                            items:
+                              type: string
+                          product_id:
+                            type: string
+                    customer:
+                      type: string
+                    property:
+                      type: string
+                    organization:
+                      type: string
+                    asset_inspection_form:
+                      type: string
+                    parent_asset:
+                      type: string
+                    asset_location:
+                      $ref: '#/components/schemas/AddressObject'
+                    billing_address:
+                      $ref: '#/components/schemas/AddressObject'
+                asset_attachments:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - file_name
+                    - url
+                    properties:
+                      file_name:
+                        type: string
+                      url:
+                        type: string
+                      file_size:
+                        type: integer
+                      visible_to_customer:
+                        type: boolean
+                        default: false
+      responses:
+        '200':
+          description: Asset created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: New asset Created successfully
+                  data:
+                    type: object
+                    properties:
+                      asset_uid:
+                        type: string
+                        format: uuid
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Invalid Organization UID
+        '500':
+          description: Server error
+  /assets/{asset_uid}:
+    get:
+      summary: Get Asset Details
+      operationId: getAssetDetails
+      description: Retrieve detailed information for a specific asset.
+      tags:
+      - Assets
+      parameters:
+      - name: asset_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Asset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '404':
+          description: Asset not found
+    put:
+      summary: Update Asset
+      operationId: updateAsset
+      description: Update an existing asset record.
+      tags:
+      - Assets
+      parameters:
+      - name: asset_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Asset'
+      responses:
+        '200':
+          description: Asset updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete Asset
+      operationId: deleteAsset
+      description: Delete an asset record.
+      tags:
+      - Assets
+      parameters:
+      - name: asset_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Asset deleted successfully
+        '404':
+          description: Asset not found
+components:
+  schemas:
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    Asset:
+      type: object
+      properties:
+        asset_uid:
+          type: string
+          format: uuid
+        asset_code:
+          type: string
+        asset_name:
+          type: string
+        asset_serial_number:
+          type: string
+        purchase_date:
+          type: string
+          format: date
+        warranty_expiry_date:
+          type: string
+          format: date
+        placed_in_service:
+          type: string
+          format: date
+        useful_life:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - MONTHS
+              - YEARS
+              - DAYS
+            value:
+              type: integer
+        customer:
+          type: string
+        property:
+          type: string
+        organization:
+          type: string
+        asset_location:
+          $ref: '#/components/schemas/AddressObject'
+  parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key generated from Zuper Settings > Developer Hub > API Keys

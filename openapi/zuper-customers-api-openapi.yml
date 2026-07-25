@@ -1,0 +1,443 @@
+openapi: 3.0.3
+info:
+  title: Zuper REST Assets Customers API
+  description: The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.
+  version: 1.0.0
+  contact:
+    name: Zuper Developer Support
+    url: https://developers.zuper.co/discuss
+  x-api-evangelist-ratings:
+    design: 7
+    consistency: 7
+    documentation: 8
+servers:
+- url: https://{dc_region}.zuperpro.com/api
+  description: Region-specific API server (dc_region obtained from accounts endpoint)
+  variables:
+    dc_region:
+      default: us1
+      description: Data-center region identifier returned by the config endpoint
+- url: https://accounts.zuperpro.com/api
+  description: Accounts / configuration endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Customers
+  description: Customer relationship management — create, update, search, and manage customer records
+paths:
+  /customers:
+    get:
+      summary: Get All Customers
+      operationId: getAllCustomers
+      description: Retrieve a paginated list of customers with filtering and sorting options.
+      tags:
+      - Customers
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/CountParam'
+      - $ref: '#/components/parameters/SortParam'
+      - name: sort_by
+        in: query
+        schema:
+          type: string
+          enum:
+          - customer_first_name
+          - customer_last_name
+          - no_of_jobs
+          - created_at
+          default: created_at
+      - name: filter.keyword
+        in: query
+        schema:
+          type: string
+      - name: filter.city
+        in: query
+        schema:
+          type: string
+      - name: filter.zipcode
+        in: query
+        schema:
+          type: string
+      - name: filter.customer_tags
+        in: query
+        schema:
+          type: string
+      - name: filter.is_active
+        in: query
+        schema:
+          type: boolean
+      - name: filter.is_deleted
+        in: query
+        schema:
+          type: boolean
+      - name: filter.is_portal_enabled
+        in: query
+        schema:
+          type: boolean
+      - name: filter.from_date
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: filter.to_date
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: filter.updated_at_from
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: filter.updated_at_to
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: filter.customer_uid
+        in: query
+        schema:
+          type: string
+      - name: filter.customer_email
+        in: query
+        schema:
+          type: string
+      - name: filter.customer_organization
+        in: query
+        schema:
+          type: string
+      - name: filter.has_org
+        in: query
+        schema:
+          type: boolean
+      - name: filter.do_not_service
+        in: query
+        schema:
+          type: boolean
+      - name: filter.has_card_on_file
+        in: query
+        schema:
+          type: boolean
+      - name: filter.account_manager
+        in: query
+        schema:
+          type: string
+      - name: filter.created_by
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of customers
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PaginatedResponse'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Create a Customer
+      operationId: createCustomer
+      description: Create a new customer record.
+      tags:
+      - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_first_name:
+                  type: string
+                customer_last_name:
+                  type: string
+                customer_email:
+                  type: string
+                  format: email
+                customer_company_name:
+                  type: string
+                customer_contact_no:
+                  $ref: '#/components/schemas/ContactNo'
+                customer_address:
+                  $ref: '#/components/schemas/AddressObject'
+                customer_billing_address:
+                  $ref: '#/components/schemas/AddressObject'
+                customer_tags:
+                  type: array
+                  items:
+                    type: string
+                custom_fields:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CustomField'
+      responses:
+        '200':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+                  customer_uid:
+                    type: string
+                    format: uuid
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /customers/{customer_uid}:
+    get:
+      summary: Get Customer Details
+      operationId: getCustomerDetails
+      description: Retrieve detailed information for a specific customer.
+      tags:
+      - Customers
+      parameters:
+      - name: customer_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '404':
+          description: Customer not found
+    put:
+      summary: Update Customer
+      operationId: updateCustomer
+      description: Update an existing customer record.
+      tags:
+      - Customers
+      parameters:
+      - name: customer_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete Customer
+      operationId: deleteCustomer
+      description: Delete a customer record.
+      tags:
+      - Customers
+      parameters:
+      - name: customer_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Customer deleted successfully
+        '404':
+          description: Customer not found
+  /customers/{customer_uid}/summary:
+    get:
+      summary: Get Customer Summary
+      operationId: getCustomerSummary
+      description: Retrieve a financial and activity summary for a specific customer.
+      tags:
+      - Customers
+      parameters:
+      - name: customer_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Customer summary
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+    ContactNo:
+      type: object
+      properties:
+        mobile:
+          type: string
+        home:
+          type: string
+        work:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: error
+        message:
+          type: string
+    Customer:
+      type: object
+      properties:
+        customer_uid:
+          type: string
+          format: uuid
+        customer_first_name:
+          type: string
+        customer_last_name:
+          type: string
+        customer_email:
+          type: string
+          format: email
+        customer_company_name:
+          type: string
+        customer_contact_no:
+          $ref: '#/components/schemas/ContactNo'
+        customer_tags:
+          type: array
+          items:
+            type: string
+        customer_address:
+          $ref: '#/components/schemas/AddressObject'
+        customer_billing_address:
+          $ref: '#/components/schemas/AddressObject'
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+        has_sla:
+          type: boolean
+        accounts:
+          type: object
+          properties:
+            ltv:
+              type: integer
+            receivables:
+              type: integer
+            credits:
+              type: integer
+        is_active:
+          type: boolean
+        is_portal_enabled:
+          type: boolean
+        has_card_on_file:
+          type: boolean
+        tax:
+          type: object
+          properties:
+            tax_exempt:
+              type: boolean
+        created_at:
+          type: string
+          format: date-time
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    CustomField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        module_name:
+          type: string
+  parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key generated from Zuper Settings > Developer Hub > API Keys

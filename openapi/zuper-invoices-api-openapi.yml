@@ -1,0 +1,334 @@
+openapi: 3.0.3
+info:
+  title: Zuper REST Assets Invoices API
+  description: The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.
+  version: 1.0.0
+  contact:
+    name: Zuper Developer Support
+    url: https://developers.zuper.co/discuss
+  x-api-evangelist-ratings:
+    design: 7
+    consistency: 7
+    documentation: 8
+servers:
+- url: https://{dc_region}.zuperpro.com/api
+  description: Region-specific API server (dc_region obtained from accounts endpoint)
+  variables:
+    dc_region:
+      default: us1
+      description: Data-center region identifier returned by the config endpoint
+- url: https://accounts.zuperpro.com/api
+  description: Accounts / configuration endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Invoices
+  description: Invoice generation, management, and status tracking
+paths:
+  /invoice:
+    get:
+      summary: Get All Invoices
+      operationId: getAllInvoices
+      description: Retrieve a paginated list of invoices.
+      tags:
+      - Invoices
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/CountParam'
+      - $ref: '#/components/parameters/SortParam'
+      responses:
+        '200':
+          description: Paginated list of invoices
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PaginatedResponse'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Invoice'
+    post:
+      summary: Create an Invoice
+      operationId: createInvoice
+      description: Create a new invoice record.
+      tags:
+      - Invoices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice:
+                  type: object
+                  properties:
+                    reference_no:
+                      type: string
+                    description:
+                      type: string
+                    invoice_date:
+                      type: string
+                      format: date-time
+                    due_date:
+                      type: string
+                      format: date-time
+                    prefix:
+                      type: string
+                    customer:
+                      type: string
+                    organization:
+                      type: string
+                    property:
+                      type: string
+                    job:
+                      type: string
+                    estimate:
+                      type: string
+                    template:
+                      type: string
+                    payment_term:
+                      type: string
+                    payment_mode:
+                      type: string
+                    service_contract:
+                      type: string
+                    customer_billing_address:
+                      $ref: '#/components/schemas/AddressObject'
+                    customer_service_address:
+                      $ref: '#/components/schemas/AddressObject'
+                    line_items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          quantity:
+                            type: number
+                          unit_price:
+                            type: number
+                          discount:
+                            type: number
+                          tax:
+                            type: number
+                          total:
+                            type: number
+                    sub_total:
+                      type: number
+                    remarks:
+                      type: string
+                    tags:
+                      type: array
+                      items:
+                        type: string
+                    custom_fields:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/CustomField'
+                    bu_uid:
+                      type: string
+                      description: Trade Type UID
+      responses:
+        '200':
+          description: Invoice created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request
+  /invoice/{invoice_uid}:
+    get:
+      summary: Get Invoice Details
+      operationId: getInvoiceDetails
+      description: Retrieve detailed information for a specific invoice.
+      tags:
+      - Invoices
+      parameters:
+      - name: invoice_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '404':
+          description: Invoice not found
+    put:
+      summary: Update an Invoice
+      operationId: updateInvoice
+      description: Update an existing invoice record.
+      tags:
+      - Invoices
+      parameters:
+      - name: invoice_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '200':
+          description: Invoice updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete an Invoice
+      operationId: deleteInvoice
+      description: Delete an invoice record.
+      tags:
+      - Invoices
+      parameters:
+      - name: invoice_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Invoice deleted successfully
+        '404':
+          description: Invoice not found
+components:
+  schemas:
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    CustomField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        module_name:
+          type: string
+    Invoice:
+      type: object
+      properties:
+        invoice_uid:
+          type: string
+          format: uuid
+        reference_no:
+          type: string
+        description:
+          type: string
+        invoice_date:
+          type: string
+          format: date-time
+        due_date:
+          type: string
+          format: date-time
+        customer:
+          type: string
+        organization:
+          type: string
+        property:
+          type: string
+        job:
+          type: string
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              quantity:
+                type: number
+              unit_price:
+                type: number
+              discount:
+                type: number
+              tax:
+                type: number
+              total:
+                type: number
+        sub_total:
+          type: number
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+  parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key generated from Zuper Settings > Developer Hub > API Keys

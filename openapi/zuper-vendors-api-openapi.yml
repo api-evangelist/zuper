@@ -1,0 +1,157 @@
+openapi: 3.0.3
+info:
+  title: Zuper REST Assets Vendors API
+  description: The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.
+  version: 1.0.0
+  contact:
+    name: Zuper Developer Support
+    url: https://developers.zuper.co/discuss
+  x-api-evangelist-ratings:
+    design: 7
+    consistency: 7
+    documentation: 8
+servers:
+- url: https://{dc_region}.zuperpro.com/api
+  description: Region-specific API server (dc_region obtained from accounts endpoint)
+  variables:
+    dc_region:
+      default: us1
+      description: Data-center region identifier returned by the config endpoint
+- url: https://accounts.zuperpro.com/api
+  description: Accounts / configuration endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Vendors
+  description: Vendor management and catalog operations
+paths:
+  /vendors:
+    get:
+      summary: Get All Vendors
+      operationId: getAllVendors
+      description: Retrieve a paginated list of vendors.
+      tags:
+      - Vendors
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/CountParam'
+      responses:
+        '200':
+          description: Paginated list of vendors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Vendor
+      operationId: createVendor
+      description: Create a new vendor record.
+      tags:
+      - Vendors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vendor_name:
+                  type: string
+                vendor_email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Vendor created successfully
+  /vendors/{vendor_uid}:
+    get:
+      summary: Get Vendor Details
+      operationId: getVendorDetails
+      description: Retrieve details for a specific vendor.
+      tags:
+      - Vendors
+      parameters:
+      - name: vendor_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Vendor details
+        '404':
+          description: Not found
+    put:
+      summary: Update Vendor
+      operationId: updateVendor
+      description: Update an existing vendor record.
+      tags:
+      - Vendors
+      parameters:
+      - name: vendor_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated successfully
+    delete:
+      summary: Delete Vendor
+      operationId: deleteVendor
+      description: Delete a vendor record.
+      tags:
+      - Vendors
+      parameters:
+      - name: vendor_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Deleted successfully
+components:
+  parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+  schemas:
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key generated from Zuper Settings > Developer Hub > API Keys
