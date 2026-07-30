@@ -13,7 +13,20 @@ description: >-
   server-side SDK via npm (zuper-sdk) and a Model Context Protocol (MCP) server
   for AI agent integration.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Paid (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zuper.png
 url: https://raw.githubusercontent.com/api-evangelist/zuper/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -30,45 +43,287 @@ tags:
   - Inventory
   - Projects
 apis:
-  - name: Zuper REST API
-    description: >-
-      The Zuper REST API provides access to all field service management data
-      and operations, including job creation and management, scheduling, route
-      optimization, customer and organization management, inventory, purchase
-      orders, invoices, proposals, quotes, timesheets, assets, contracts, teams,
-      and communications. The API uses API key authentication via the x-api-key
-      header and communicates over HTTPS using JSON with ISO 8601 date formats.
-      Region-specific base URLs are retrieved dynamically from the accounts
-      endpoint.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developers.zuper.co/
-    baseURL: https://accounts.zuperpro.com/api
-    tags:
-      - Field Service Management
-      - Jobs
-      - Scheduling
-      - Dispatching
-      - Invoicing
-      - Timesheets
-      - Assets
-      - Inventory
-    properties:
-      - type: Documentation
-        url: https://developers.zuper.co/docs
-      - type: OpenAPI
-        url: https://developers.zuper.co/llms.txt
-      - type: GettingStarted
-        url: https://developers.zuper.co/docs/getting-started
-      - type: Reference
-        url: https://developers.zuper.co/reference
-      - type: ChangeLog
-        url: https://developers.zuper.co/changelog
-      - type: Authentication
-        url: https://developers.zuper.co/reference/generate-api-key
-    contact:
-      - FN: Zuper Support
-        url: https://developers.zuper.co/discuss
-        email: ''
+- aid: zuper:zuper-assets-api
+  name: Zuper Assets API
+  description: Asset tracking — lifecycle management, inspection forms, bulk operations, and history
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-assets-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-authentication-api
+  name: Zuper Authentication API
+  description: API key generation and base URL discovery
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-customers-api
+  name: Zuper Customers API
+  description: Customer relationship management — create, update, search, and manage customer records
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-invoices-api
+  name: Zuper Invoices API
+  description: Invoice generation, management, and status tracking
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-jobs-api
+  name: Zuper Jobs API
+  description: >-
+    Job lifecycle management — creation, scheduling, assignment, status updates, and route optimization
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-organizations-api
+  name: Zuper Organizations API
+  description: Customer organization (account) management
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-projects-api
+  name: Zuper Projects API
+  description: Multi-job project management with phases, milestones, and dependencies
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-projects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-properties-api
+  name: Zuper Properties API
+  description: Service property management and service task assignment
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-properties-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-purchase-orders-api
+  name: Zuper Purchase Orders API
+  description: Vendor purchase order management
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Purchase Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-purchase-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-teams-api
+  name: Zuper Teams API
+  description: Field team management and assignments
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-teams-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-timesheets-api
+  name: Zuper Timesheets API
+  description: Field staff timesheet and time-off management
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Timesheets
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-timesheets-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-users-api
+  name: Zuper Users API
+  description: Platform user management and skills tracking
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-vendors-api
+  name: Zuper Vendors API
+  description: Vendor management and catalog operations
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Vendors
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-vendors-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
+- aid: zuper:zuper-webhooks-api
+  name: Zuper Webhooks API
+  description: Webhook registration and event subscription management
+  humanURL: https://developers.zuper.co/
+  baseURL: https://accounts.zuperpro.com/api
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/zuper-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.zuper.co/docs
+  - type: GettingStarted
+    url: https://developers.zuper.co/docs/getting-started
+  - type: Reference
+    url: https://developers.zuper.co/reference
+  - type: ChangeLog
+    url: https://developers.zuper.co/changelog
+  - type: Authentication
+    url: https://developers.zuper.co/reference/generate-api-key
 common:
   - type: AgenticAccess
     url: agentic-access/zuper-agentic-access.yml
