@@ -1,0 +1,40 @@
+{
+  "provider": "zuper",
+  "sources": [
+    "zuper-assets-api-openapi.yml",
+    "zuper-authentication-api-openapi.yml",
+    "zuper-customers-api-openapi.yml",
+    "zuper-invoices-api-openapi.yml",
+    "zuper-jobs-api-openapi.yml",
+    "zuper-organizations-api-openapi.yml",
+    "zuper-projects-api-openapi.yml",
+    "zuper-properties-api-openapi.yml",
+    "zuper-purchase-orders-api-openapi.yml",
+    "zuper-teams-api-openapi.yml",
+    "zuper-timesheets-api-openapi.yml",
+    "zuper-users-api-openapi.yml",
+    "zuper-vendors-api-openapi.yml",
+    "zuper-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "zuper-assets-api-openapi.yml",
+    "zuper-authentication-api-openapi.yml",
+    "zuper-customers-api-openapi.yml",
+    "zuper-invoices-api-openapi.yml",
+    "zuper-jobs-api-openapi.yml",
+    "zuper-organizations-api-openapi.yml",
+    "zuper-projects-api-openapi.yml",
+    "zuper-properties-api-openapi.yml",
+    "zuper-purchase-orders-api-openapi.yml",
+    "zuper-teams-api-openapi.yml",
+    "zuper-timesheets-api-openapi.yml",
+    "zuper-users-api-openapi.yml",
+    "zuper-vendors-api-openapi.yml",
+    "zuper-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

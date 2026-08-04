@@ -1,0 +1,2259 @@
+openapi: 3.0.3
+info:
+  title: Zuper REST API
+  description: >-
+    The Zuper REST API provides programmatic access to the Zuper field service
+    management platform. It covers jobs, scheduling, route optimization, customers,
+    organizations, assets, inventory, purchase orders, invoices, proposals, quotes,
+    timesheets, projects, properties, service tasks, service contracts, webhooks,
+    and communications. Authentication uses API keys passed via the x-api-key header.
+    Region-specific base URLs are discovered by POSTing to the accounts endpoint.
+  version: 1.0.0
+  contact:
+    name: Zuper Developer Support
+    url: https://developers.zuper.co/discuss
+  x-api-evangelist-ratings:
+    design: 7
+    consistency: 7
+    documentation: 8
+servers:
+  - url: https://{dc_region}.zuperpro.com/api
+    description: Region-specific API server (dc_region obtained from accounts endpoint)
+    variables:
+      dc_region:
+        default: us1
+        description: Data-center region identifier returned by the config endpoint
+  - url: https://accounts.zuperpro.com/api
+    description: Accounts / configuration endpoint
+security:
+  - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key generated from Zuper Settings > Developer Hub > API Keys
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum: [DESC, ASC]
+        default: DESC
+  schemas:
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+    ContactNo:
+      type: object
+      properties:
+        mobile:
+          type: string
+        home:
+          type: string
+        work:
+          type: string
+    CustomField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        module_name:
+          type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: error
+        message:
+          type: string
+    Customer:
+      type: object
+      properties:
+        customer_uid:
+          type: string
+          format: uuid
+        customer_first_name:
+          type: string
+        customer_last_name:
+          type: string
+        customer_email:
+          type: string
+          format: email
+        customer_company_name:
+          type: string
+        customer_contact_no:
+          $ref: '#/components/schemas/ContactNo'
+        customer_tags:
+          type: array
+          items:
+            type: string
+        customer_address:
+          $ref: '#/components/schemas/AddressObject'
+        customer_billing_address:
+          $ref: '#/components/schemas/AddressObject'
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+        has_sla:
+          type: boolean
+        accounts:
+          type: object
+          properties:
+            ltv:
+              type: integer
+            receivables:
+              type: integer
+            credits:
+              type: integer
+        is_active:
+          type: boolean
+        is_portal_enabled:
+          type: boolean
+        has_card_on_file:
+          type: boolean
+        tax:
+          type: object
+          properties:
+            tax_exempt:
+              type: boolean
+        created_at:
+          type: string
+          format: date-time
+    Job:
+      type: object
+      properties:
+        job_uid:
+          type: string
+          format: uuid
+        job_title:
+          type: string
+        job_category:
+          type: string
+        job_priority:
+          type: string
+          enum: [URGENT, HIGH, MEDIUM, LOW]
+        job_type:
+          type: string
+          enum: [NEW, REVISIT]
+        job_description:
+          type: string
+        job_tags:
+          type: array
+          items:
+            type: string
+        scheduled_start_time:
+          type: string
+          format: date-time
+        scheduled_end_time:
+          type: string
+          format: date-time
+        due_date:
+          type: string
+          format: date-time
+        assigned_to:
+          type: array
+          items:
+            type: string
+        assigned_to_team:
+          type: array
+          items:
+            type: string
+        customer_uid:
+          type: string
+          format: uuid
+        assets:
+          type: array
+          items:
+            type: string
+        products:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+    Asset:
+      type: object
+      properties:
+        asset_uid:
+          type: string
+          format: uuid
+        asset_code:
+          type: string
+        asset_name:
+          type: string
+        asset_serial_number:
+          type: string
+        purchase_date:
+          type: string
+          format: date
+        warranty_expiry_date:
+          type: string
+          format: date
+        placed_in_service:
+          type: string
+          format: date
+        useful_life:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [MONTHS, YEARS, DAYS]
+            value:
+              type: integer
+        customer:
+          type: string
+        property:
+          type: string
+        organization:
+          type: string
+        asset_location:
+          $ref: '#/components/schemas/AddressObject'
+    Invoice:
+      type: object
+      properties:
+        invoice_uid:
+          type: string
+          format: uuid
+        reference_no:
+          type: string
+        description:
+          type: string
+        invoice_date:
+          type: string
+          format: date-time
+        due_date:
+          type: string
+          format: date-time
+        customer:
+          type: string
+        organization:
+          type: string
+        property:
+          type: string
+        job:
+          type: string
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              quantity:
+                type: number
+              unit_price:
+                type: number
+              discount:
+                type: number
+              tax:
+                type: number
+              total:
+                type: number
+        sub_total:
+          type: number
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+paths:
+  /config:
+    post:
+      summary: Get Region-Specific Base URL
+      operationId: getConfig
+      description: >-
+        POST your company login name to discover the dc_api_url (region-specific
+        base URL) for all subsequent API calls. Must target https://accounts.zuperpro.com/api.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [company_login]
+              properties:
+                company_login:
+                  type: string
+                  description: Your Zuper company login name
+      responses:
+        '200':
+          description: Configuration details including dc_api_url
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dc_api_url:
+                    type: string
+                    description: Region-specific base API URL to use for all subsequent requests
+  /customers:
+    get:
+      summary: Get All Customers
+      operationId: getAllCustomers
+      description: Retrieve a paginated list of customers with filtering and sorting options.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+        - $ref: '#/components/parameters/SortParam'
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+            enum: [customer_first_name, customer_last_name, no_of_jobs, created_at]
+            default: created_at
+        - name: filter.keyword
+          in: query
+          schema:
+            type: string
+        - name: filter.city
+          in: query
+          schema:
+            type: string
+        - name: filter.zipcode
+          in: query
+          schema:
+            type: string
+        - name: filter.customer_tags
+          in: query
+          schema:
+            type: string
+        - name: filter.is_active
+          in: query
+          schema:
+            type: boolean
+        - name: filter.is_deleted
+          in: query
+          schema:
+            type: boolean
+        - name: filter.is_portal_enabled
+          in: query
+          schema:
+            type: boolean
+        - name: filter.from_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.to_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.updated_at_from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.updated_at_to
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.customer_uid
+          in: query
+          schema:
+            type: string
+        - name: filter.customer_email
+          in: query
+          schema:
+            type: string
+        - name: filter.customer_organization
+          in: query
+          schema:
+            type: string
+        - name: filter.has_org
+          in: query
+          schema:
+            type: boolean
+        - name: filter.do_not_service
+          in: query
+          schema:
+            type: boolean
+        - name: filter.has_card_on_file
+          in: query
+          schema:
+            type: boolean
+        - name: filter.account_manager
+          in: query
+          schema:
+            type: string
+        - name: filter.created_by
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Paginated list of customers
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Create a Customer
+      operationId: createCustomer
+      description: Create a new customer record.
+      tags:
+        - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_first_name:
+                  type: string
+                customer_last_name:
+                  type: string
+                customer_email:
+                  type: string
+                  format: email
+                customer_company_name:
+                  type: string
+                customer_contact_no:
+                  $ref: '#/components/schemas/ContactNo'
+                customer_address:
+                  $ref: '#/components/schemas/AddressObject'
+                customer_billing_address:
+                  $ref: '#/components/schemas/AddressObject'
+                customer_tags:
+                  type: array
+                  items:
+                    type: string
+                custom_fields:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CustomField'
+      responses:
+        '200':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+                  customer_uid:
+                    type: string
+                    format: uuid
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /customers/{customer_uid}:
+    get:
+      summary: Get Customer Details
+      operationId: getCustomerDetails
+      description: Retrieve detailed information for a specific customer.
+      tags:
+        - Customers
+      parameters:
+        - name: customer_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '404':
+          description: Customer not found
+    put:
+      summary: Update Customer
+      operationId: updateCustomer
+      description: Update an existing customer record.
+      tags:
+        - Customers
+      parameters:
+        - name: customer_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete Customer
+      operationId: deleteCustomer
+      description: Delete a customer record.
+      tags:
+        - Customers
+      parameters:
+        - name: customer_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Customer deleted successfully
+        '404':
+          description: Customer not found
+  /customers/{customer_uid}/summary:
+    get:
+      summary: Get Customer Summary
+      operationId: getCustomerSummary
+      description: Retrieve a financial and activity summary for a specific customer.
+      tags:
+        - Customers
+      parameters:
+        - name: customer_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Customer summary
+          content:
+            application/json:
+              schema:
+                type: object
+  /jobs:
+    get:
+      summary: Get Jobs
+      operationId: getJobs
+      description: Retrieve a paginated, filterable list of jobs.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+        - $ref: '#/components/parameters/SortParam'
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+            enum: [work_order_number, job_priority, scheduled_start_time, due_date]
+            default: work_order_number
+        - name: date_type
+          in: query
+          schema:
+            type: string
+            enum: [scheduled_date, created_date, current_status_updated_at]
+            default: scheduled_date
+        - name: filter.priority
+          in: query
+          schema:
+            type: string
+            enum: [URGENT, HIGH, MEDIUM, LOW]
+        - name: filter.customer
+          in: query
+          schema:
+            type: string
+        - name: filter.category
+          in: query
+          schema:
+            type: string
+        - name: filter.keyword
+          in: query
+          schema:
+            type: string
+        - name: filter.job_tags
+          in: query
+          schema:
+            type: string
+        - name: filter.job_status
+          in: query
+          schema:
+            type: string
+        - name: filter.from_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.to_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.updated_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.assigned_to
+          in: query
+          schema:
+            type: string
+        - name: filter.assigned_to_team
+          in: query
+          schema:
+            type: string
+        - name: filter.is_deleted
+          in: query
+          description: Show deleted jobs (max 90 days)
+          schema:
+            type: boolean
+        - name: filter.is_invoiced
+          in: query
+          schema:
+            type: boolean
+        - name: filter.job_type
+          in: query
+          schema:
+            type: string
+            enum: [NEW, REVISIT]
+        - name: filter.due_date_from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.due_date_to
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: filter.customer_feedback
+          in: query
+          schema:
+            type: string
+            enum: [HAPPY, NEUTRAL, UNHAPPY, VERY_HAPPY, VERY_UNHAPPY]
+        - name: filter.asset
+          in: query
+          schema:
+            type: string
+        - name: filter.property
+          in: query
+          schema:
+            type: string
+        - name: filter.project
+          in: query
+          schema:
+            type: string
+        - name: filter.business_unit
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Paginated list of jobs
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Job'
+        '400':
+          description: Bad request
+    post:
+      summary: Create a Job
+      operationId: createJob
+      description: Create a new job in the field service management system.
+      tags:
+        - Jobs
+      parameters:
+        - name: check_assignment_conflict
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Check for scheduling conflicts before creating
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [job_title, job_category]
+              properties:
+                job_title:
+                  type: string
+                job_category:
+                  type: string
+                job_priority:
+                  type: string
+                  enum: [URGENT, HIGH, MEDIUM, LOW]
+                job_type:
+                  type: string
+                  enum: [NEW, REVISIT]
+                job_description:
+                  type: string
+                job_tags:
+                  type: array
+                  items:
+                    type: string
+                scheduled_start_time:
+                  type: string
+                  format: date-time
+                scheduled_end_time:
+                  type: string
+                  format: date-time
+                due_date:
+                  type: string
+                  format: date-time
+                assigned_to:
+                  type: array
+                  items:
+                    type: string
+                assigned_to_team:
+                  type: array
+                  items:
+                    type: string
+                customer_uid:
+                  type: string
+                  format: uuid
+                customer:
+                  type: object
+                assets:
+                  type: array
+                  items:
+                    type: string
+                products:
+                  type: array
+                  items:
+                    type: string
+                skills:
+                  type: array
+                  items:
+                    type: string
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                service_task:
+                  type: string
+                service_contract:
+                  type: string
+                custom_fields:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CustomField'
+      responses:
+        '200':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: New Job Created successfully
+                  job_uid:
+                    type: string
+                    format: uuid
+                  customer_uid:
+                    type: string
+                    format: uuid
+        '400':
+          description: Bad request - customer or organization data required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /jobs/{job_uid}:
+    get:
+      summary: Get Job Details
+      operationId: getJobDetails
+      description: Retrieve detailed information for a specific job.
+      tags:
+        - Jobs
+      parameters:
+        - name: job_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          description: Job not found
+    put:
+      summary: Update a Job
+      operationId: updateJob
+      description: Update an existing job record.
+      tags:
+        - Jobs
+      parameters:
+        - name: job_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          description: Job updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete a Job
+      operationId: deleteJob
+      description: Delete a job record.
+      tags:
+        - Jobs
+      parameters:
+        - name: job_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job deleted successfully
+        '404':
+          description: Job not found
+  /assets:
+    get:
+      summary: Get All Assets
+      operationId: getAllAssets
+      description: Retrieve a paginated list of assets.
+      tags:
+        - Assets
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+        - $ref: '#/components/parameters/SortParam'
+      responses:
+        '200':
+          description: Paginated list of assets
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Asset'
+        '400':
+          description: Bad request
+    post:
+      summary: Create Asset
+      operationId: createAsset
+      description: Create a new asset record.
+      tags:
+        - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [asset]
+              properties:
+                asset:
+                  type: object
+                  required: [asset_code, asset_name]
+                  properties:
+                    asset_code:
+                      type: string
+                    asset_name:
+                      type: string
+                    purchase_date:
+                      type: string
+                      format: date
+                    warranty_expiry_date:
+                      type: string
+                      format: date
+                    placed_in_service:
+                      type: string
+                      format: date
+                    useful_life:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum: [MONTHS, YEARS, DAYS]
+                        value:
+                          type: integer
+                    asset_category:
+                      type: string
+                    asset_product:
+                      type: string
+                    asset_serial_number:
+                      type: string
+                    asset_parts:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          quantity:
+                            type: integer
+                          serial_nos:
+                            type: array
+                            items:
+                              type: string
+                          product_id:
+                            type: string
+                    customer:
+                      type: string
+                    property:
+                      type: string
+                    organization:
+                      type: string
+                    asset_inspection_form:
+                      type: string
+                    parent_asset:
+                      type: string
+                    asset_location:
+                      $ref: '#/components/schemas/AddressObject'
+                    billing_address:
+                      $ref: '#/components/schemas/AddressObject'
+                asset_attachments:
+                  type: array
+                  items:
+                    type: object
+                    required: [file_name, url]
+                    properties:
+                      file_name:
+                        type: string
+                      url:
+                        type: string
+                      file_size:
+                        type: integer
+                      visible_to_customer:
+                        type: boolean
+                        default: false
+      responses:
+        '200':
+          description: Asset created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: New asset Created successfully
+                  data:
+                    type: object
+                    properties:
+                      asset_uid:
+                        type: string
+                        format: uuid
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Invalid Organization UID
+        '500':
+          description: Server error
+  /assets/{asset_uid}:
+    get:
+      summary: Get Asset Details
+      operationId: getAssetDetails
+      description: Retrieve detailed information for a specific asset.
+      tags:
+        - Assets
+      parameters:
+        - name: asset_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Asset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '404':
+          description: Asset not found
+    put:
+      summary: Update Asset
+      operationId: updateAsset
+      description: Update an existing asset record.
+      tags:
+        - Assets
+      parameters:
+        - name: asset_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Asset'
+      responses:
+        '200':
+          description: Asset updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete Asset
+      operationId: deleteAsset
+      description: Delete an asset record.
+      tags:
+        - Assets
+      parameters:
+        - name: asset_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Asset deleted successfully
+        '404':
+          description: Asset not found
+  /invoice:
+    get:
+      summary: Get All Invoices
+      operationId: getAllInvoices
+      description: Retrieve a paginated list of invoices.
+      tags:
+        - Invoices
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+        - $ref: '#/components/parameters/SortParam'
+      responses:
+        '200':
+          description: Paginated list of invoices
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Invoice'
+    post:
+      summary: Create an Invoice
+      operationId: createInvoice
+      description: Create a new invoice record.
+      tags:
+        - Invoices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice:
+                  type: object
+                  properties:
+                    reference_no:
+                      type: string
+                    description:
+                      type: string
+                    invoice_date:
+                      type: string
+                      format: date-time
+                    due_date:
+                      type: string
+                      format: date-time
+                    prefix:
+                      type: string
+                    customer:
+                      type: string
+                    organization:
+                      type: string
+                    property:
+                      type: string
+                    job:
+                      type: string
+                    estimate:
+                      type: string
+                    template:
+                      type: string
+                    payment_term:
+                      type: string
+                    payment_mode:
+                      type: string
+                    service_contract:
+                      type: string
+                    customer_billing_address:
+                      $ref: '#/components/schemas/AddressObject'
+                    customer_service_address:
+                      $ref: '#/components/schemas/AddressObject'
+                    line_items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          quantity:
+                            type: number
+                          unit_price:
+                            type: number
+                          discount:
+                            type: number
+                          tax:
+                            type: number
+                          total:
+                            type: number
+                    sub_total:
+                      type: number
+                    remarks:
+                      type: string
+                    tags:
+                      type: array
+                      items:
+                        type: string
+                    custom_fields:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/CustomField'
+                    bu_uid:
+                      type: string
+                      description: Trade Type UID
+      responses:
+        '200':
+          description: Invoice created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request
+  /invoice/{invoice_uid}:
+    get:
+      summary: Get Invoice Details
+      operationId: getInvoiceDetails
+      description: Retrieve detailed information for a specific invoice.
+      tags:
+        - Invoices
+      parameters:
+        - name: invoice_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '404':
+          description: Invoice not found
+    put:
+      summary: Update an Invoice
+      operationId: updateInvoice
+      description: Update an existing invoice record.
+      tags:
+        - Invoices
+      parameters:
+        - name: invoice_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '200':
+          description: Invoice updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete an Invoice
+      operationId: deleteInvoice
+      description: Delete an invoice record.
+      tags:
+        - Invoices
+      parameters:
+        - name: invoice_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Invoice deleted successfully
+        '404':
+          description: Invoice not found
+  /purchase_orders:
+    get:
+      summary: Get Purchase Orders
+      operationId: getPurchaseOrders
+      description: Retrieve a paginated list of purchase orders.
+      tags:
+        - Purchase Orders
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+        - $ref: '#/components/parameters/SortParam'
+      responses:
+        '200':
+          description: Paginated list of purchase orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Purchase Order
+      operationId: createPurchaseOrder
+      description: Create a new purchase order.
+      tags:
+        - Purchase Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Purchase order created successfully
+        '400':
+          description: Bad request
+  /purchase_orders/{purchase_order_uid}:
+    get:
+      summary: Get Purchase Order Details
+      operationId: getPurchaseOrderDetails
+      description: Retrieve details of a specific purchase order.
+      tags:
+        - Purchase Orders
+      parameters:
+        - name: purchase_order_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Purchase order details
+        '404':
+          description: Not found
+    put:
+      summary: Update Purchase Order
+      operationId: updatePurchaseOrder
+      description: Update an existing purchase order.
+      tags:
+        - Purchase Orders
+      parameters:
+        - name: purchase_order_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete Purchase Order
+      operationId: deletePurchaseOrder
+      description: Delete a purchase order.
+      tags:
+        - Purchase Orders
+      parameters:
+        - name: purchase_order_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Deleted successfully
+        '404':
+          description: Not found
+  /purchase_orders/{purchase_order_uid}/send:
+    post:
+      summary: Send Purchase Order
+      operationId: sendPurchaseOrder
+      description: Send a purchase order to the vendor.
+      tags:
+        - Purchase Orders
+      parameters:
+        - name: purchase_order_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Purchase order sent successfully
+  /purchase_orders/{purchase_order_uid}/status:
+    put:
+      summary: Update Purchase Order Status
+      operationId: updatePurchaseOrderStatus
+      description: Update the status of a purchase order.
+      tags:
+        - Purchase Orders
+      parameters:
+        - name: purchase_order_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Status updated successfully
+  /timesheets:
+    get:
+      summary: Get Timesheets
+      operationId: getTimesheets
+      description: Retrieve a paginated list of timesheets.
+      tags:
+        - Timesheets
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+      responses:
+        '200':
+          description: Paginated list of timesheets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Timesheet
+      operationId: createTimesheet
+      description: Create a new timesheet entry.
+      tags:
+        - Timesheets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Timesheet created successfully
+  /timesheets/{timesheet_uid}:
+    put:
+      summary: Update Timesheet
+      operationId: updateTimesheet
+      description: Update an existing timesheet entry.
+      tags:
+        - Timesheets
+      parameters:
+        - name: timesheet_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Timesheet updated successfully
+    delete:
+      summary: Delete Timesheet
+      operationId: deleteTimesheet
+      description: Delete a timesheet entry.
+      tags:
+        - Timesheets
+      parameters:
+        - name: timesheet_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Timesheet deleted successfully
+  /webhooks:
+    get:
+      summary: Get Webhooks
+      operationId: getWebhooks
+      description: Retrieve all configured webhooks.
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        webhook_uid:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        url:
+                          type: string
+                        is_active:
+                          type: boolean
+    post:
+      summary: Create a Webhook
+      operationId: createWebhook
+      description: Register a new webhook endpoint.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, url]
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+                events:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Webhook created successfully
+        '400':
+          description: Bad request
+  /webhooks/{webhook_uid}:
+    get:
+      summary: Get Webhook Details
+      operationId: getWebhookDetails
+      description: Retrieve details of a specific webhook.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Webhook details
+        '404':
+          description: Not found
+    put:
+      summary: Update Webhook
+      operationId: updateWebhook
+      description: Update an existing webhook configuration.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Webhook updated successfully
+    delete:
+      summary: Delete Webhook
+      operationId: deleteWebhook
+      description: Delete a webhook registration.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Webhook deleted successfully
+  /webhooks/{webhook_uid}/activate:
+    put:
+      summary: Activate/Deactivate Webhook
+      operationId: activateWebhook
+      description: Toggle the active status of a webhook.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_active:
+                  type: boolean
+      responses:
+        '200':
+          description: Webhook status updated
+  /organization:
+    get:
+      summary: Get Organizations
+      operationId: getOrganizations
+      description: Retrieve a paginated list of customer organizations.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+        - $ref: '#/components/parameters/SortParam'
+      responses:
+        '200':
+          description: Paginated list of organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Organization
+      operationId: createOrganization
+      description: Create a new customer organization.
+      tags:
+        - Organizations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                organization_email:
+                  type: string
+                  format: email
+                organization_address:
+                  $ref: '#/components/schemas/AddressObject'
+                organization_billing_address:
+                  $ref: '#/components/schemas/AddressObject'
+      responses:
+        '200':
+          description: Organization created successfully
+  /organization/{organization_uid}:
+    get:
+      summary: Get Organization Details
+      operationId: getOrganizationDetails
+      description: Retrieve details for a specific organization.
+      tags:
+        - Organizations
+      parameters:
+        - name: organization_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Organization details
+        '404':
+          description: Not found
+    put:
+      summary: Update Organization
+      operationId: updateOrganization
+      description: Update an existing organization record.
+      tags:
+        - Organizations
+      parameters:
+        - name: organization_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated successfully
+    delete:
+      summary: Delete Organization
+      operationId: deleteOrganization
+      description: Delete an organization record.
+      tags:
+        - Organizations
+      parameters:
+        - name: organization_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Deleted successfully
+  /projects:
+    get:
+      summary: Get All Projects
+      operationId: getAllProjects
+      description: Retrieve a paginated list of projects.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+      responses:
+        '200':
+          description: Paginated list of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Project
+      operationId: createProject
+      description: Create a new project.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project_name:
+                  type: string
+                project_description:
+                  type: string
+                customer:
+                  type: string
+                start_date:
+                  type: string
+                  format: date-time
+                end_date:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Project created successfully
+  /projects/{project_uid}:
+    get:
+      summary: Get Project Details
+      operationId: getProjectDetails
+      description: Retrieve details of a specific project.
+      tags:
+        - Projects
+      parameters:
+        - name: project_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Project details
+        '404':
+          description: Not found
+    put:
+      summary: Update a Project
+      operationId: updateProject
+      description: Update an existing project.
+      tags:
+        - Projects
+      parameters:
+        - name: project_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Project updated successfully
+    delete:
+      summary: Delete Project
+      operationId: deleteProject
+      description: Delete a project record.
+      tags:
+        - Projects
+      parameters:
+        - name: project_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Project deleted successfully
+  /vendors:
+    get:
+      summary: Get All Vendors
+      operationId: getAllVendors
+      description: Retrieve a paginated list of vendors.
+      tags:
+        - Vendors
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+      responses:
+        '200':
+          description: Paginated list of vendors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Vendor
+      operationId: createVendor
+      description: Create a new vendor record.
+      tags:
+        - Vendors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vendor_name:
+                  type: string
+                vendor_email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Vendor created successfully
+  /vendors/{vendor_uid}:
+    get:
+      summary: Get Vendor Details
+      operationId: getVendorDetails
+      description: Retrieve details for a specific vendor.
+      tags:
+        - Vendors
+      parameters:
+        - name: vendor_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Vendor details
+        '404':
+          description: Not found
+    put:
+      summary: Update Vendor
+      operationId: updateVendor
+      description: Update an existing vendor record.
+      tags:
+        - Vendors
+      parameters:
+        - name: vendor_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated successfully
+    delete:
+      summary: Delete Vendor
+      operationId: deleteVendor
+      description: Delete a vendor record.
+      tags:
+        - Vendors
+      parameters:
+        - name: vendor_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Deleted successfully
+  /users:
+    get:
+      summary: Get All Users
+      operationId: getAllUsers
+      description: Retrieve a paginated list of platform users.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+      responses:
+        '200':
+          description: Paginated list of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create User
+      operationId: createUser
+      description: Create a new platform user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: User created successfully
+  /users/{user_uid}:
+    get:
+      summary: Get User Details
+      operationId: getUserDetails
+      description: Retrieve details for a specific user.
+      tags:
+        - Users
+      parameters:
+        - name: user_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: User details
+        '404':
+          description: Not found
+    put:
+      summary: Update User Details
+      operationId: updateUserDetails
+      description: Update an existing user's details.
+      tags:
+        - Users
+      parameters:
+        - name: user_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: User updated successfully
+    delete:
+      summary: Delete User
+      operationId: deleteUser
+      description: Delete a platform user.
+      tags:
+        - Users
+      parameters:
+        - name: user_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: User deleted successfully
+  /teams:
+    get:
+      summary: Get All Teams
+      operationId: getAllTeams
+      description: Retrieve a paginated list of teams.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+      responses:
+        '200':
+          description: Paginated list of teams
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Team
+      operationId: createTeam
+      description: Create a new team.
+      tags:
+        - Teams
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team_name:
+                  type: string
+      responses:
+        '200':
+          description: Team created successfully
+  /teams/{team_uid}:
+    get:
+      summary: Get Team Details
+      operationId: getTeamDetails
+      description: Retrieve details for a specific team.
+      tags:
+        - Teams
+      parameters:
+        - name: team_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Team details
+        '404':
+          description: Not found
+    put:
+      summary: Update Team Details
+      operationId: updateTeamDetails
+      description: Update an existing team.
+      tags:
+        - Teams
+      parameters:
+        - name: team_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Team updated successfully
+    delete:
+      summary: Delete Team
+      operationId: deleteTeam
+      description: Delete a team.
+      tags:
+        - Teams
+      parameters:
+        - name: team_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Team deleted successfully
+  /properties:
+    get:
+      summary: Get All Properties
+      operationId: getAllProperties
+      description: Retrieve a paginated list of properties.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/CountParam'
+      responses:
+        '200':
+          description: Paginated list of properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+    post:
+      summary: Create Property
+      operationId: createProperty
+      description: Create a new property record.
+      tags:
+        - Properties
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property_name:
+                  type: string
+                property_address:
+                  $ref: '#/components/schemas/AddressObject'
+                customer:
+                  type: string
+      responses:
+        '200':
+          description: Property created successfully
+  /properties/{property_uid}:
+    get:
+      summary: Get Property Details
+      operationId: getPropertyDetails
+      description: Retrieve details for a specific property.
+      tags:
+        - Properties
+      parameters:
+        - name: property_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Property details
+        '404':
+          description: Not found
+    put:
+      summary: Update Property Details
+      operationId: updatePropertyDetails
+      description: Update an existing property record.
+      tags:
+        - Properties
+      parameters:
+        - name: property_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Property updated successfully
+    delete:
+      summary: Delete Property
+      operationId: deleteProperty
+      description: Delete a property record.
+      tags:
+        - Properties
+      parameters:
+        - name: property_uid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Property deleted successfully
+tags:
+  - name: Authentication
+    description: API key generation and base URL discovery
+  - name: Customers
+    description: Customer relationship management — create, update, search, and manage customer records
+  - name: Jobs
+    description: Job lifecycle management — creation, scheduling, assignment, status updates, and route optimization
+  - name: Assets
+    description: Asset tracking — lifecycle management, inspection forms, bulk operations, and history
+  - name: Invoices
+    description: Invoice generation, management, and status tracking
+  - name: Purchase Orders
+    description: Vendor purchase order management
+  - name: Timesheets
+    description: Field staff timesheet and time-off management
+  - name: Webhooks
+    description: Webhook registration and event subscription management
+  - name: Organizations
+    description: Customer organization (account) management
+  - name: Projects
+    description: Multi-job project management with phases, milestones, and dependencies
+  - name: Vendors
+    description: Vendor management and catalog operations
+  - name: Users
+    description: Platform user management and skills tracking
+  - name: Teams
+    description: Field team management and assignments
+  - name: Properties
+    description: Service property management and service task assignment
