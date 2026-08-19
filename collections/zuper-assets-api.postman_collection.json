@@ -1,0 +1,1066 @@
+{
+  "item": [
+    {
+      "id": "11c54fb8-a3a1-4684-b9db-89a1db34c81b",
+      "name": "Assets",
+      "description": {
+        "content": "Asset tracking — lifecycle management, inspection forms, bulk operations, and history",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "589bd889-3615-4963-8c63-5aff0a97bd9f",
+          "name": "Get All Assets",
+          "request": {
+            "name": "Get All Assets",
+            "description": {
+              "content": "Retrieve a paginated list of assets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "Number of records per page (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "DESC"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "100bfd20-1c08-4c0b-902d-f60651aa84c7",
+              "name": "Paginated list of assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"total_records\": 1110,\n  \"current_page\": 888,\n  \"total_pages\": 7322,\n  \"data\": [\n    {\n      \"asset_uid\": \"b2902457-194e-5c87-68a9-bfe86be6d0cf\",\n      \"asset_code\": \"string\",\n      \"asset_name\": \"string\",\n      \"asset_serial_number\": \"string\",\n      \"purchase_date\": \"1947-02-14\",\n      \"warranty_expiry_date\": \"1974-11-15\",\n      \"placed_in_service\": \"1982-05-12\",\n      \"useful_life\": {\n        \"type\": \"YEARS\",\n        \"value\": 4522\n      },\n      \"customer\": \"string\",\n      \"property\": \"string\",\n      \"organization\": \"string\",\n      \"asset_location\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\",\n        \"zip_code\": \"string\",\n        \"geo_coordinates\": {\n          \"latitude\": 4020.0833217731292,\n          \"longitude\": 1030.4408941923282\n        }\n      }\n    },\n    {\n      \"asset_uid\": \"af14b091-4544-a1bf-eb01-3f25641fbda2\",\n      \"asset_code\": \"string\",\n      \"asset_name\": \"string\",\n      \"asset_serial_number\": \"string\",\n      \"purchase_date\": \"2018-12-13\",\n      \"warranty_expiry_date\": \"1961-04-19\",\n      \"placed_in_service\": \"1965-09-26\",\n      \"useful_life\": {\n        \"type\": \"MONTHS\",\n        \"value\": 9677\n      },\n      \"customer\": \"string\",\n      \"property\": \"string\",\n      \"organization\": \"string\",\n      \"asset_location\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\",\n        \"zip_code\": \"string\",\n        \"geo_coordinates\": {\n          \"latitude\": 1713.6576204888088,\n          \"longitude\": 3178.911456826681\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34b86219-ea8c-4ac3-b006-2c0b9477dd29",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fbb508d-f5be-4e1e-97f3-9ff0256c1a78",
+          "name": "Create Asset",
+          "request": {
+            "name": "Create Asset",
+            "description": {
+              "content": "Create a new asset record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"asset\": {\n    \"asset_code\": \"<string>\",\n    \"asset_name\": \"<string>\",\n    \"purchase_date\": \"<date>\",\n    \"warranty_expiry_date\": \"<date>\",\n    \"placed_in_service\": \"<date>\",\n    \"useful_life\": {\n      \"type\": \"<string>\",\n      \"value\": \"<integer>\"\n    },\n    \"asset_category\": \"<string>\",\n    \"asset_product\": \"<string>\",\n    \"asset_serial_number\": \"<string>\",\n    \"asset_parts\": [\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      },\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      }\n    ],\n    \"customer\": \"<string>\",\n    \"property\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"asset_inspection_form\": \"<string>\",\n    \"parent_asset\": \"<string>\",\n    \"asset_location\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    }\n  },\n  \"asset_attachments\": [\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    },\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7af1f036-ce8b-43c7-9b2d-23bcdee550e8",
+              "name": "Asset created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"asset_code\": \"<string>\",\n    \"asset_name\": \"<string>\",\n    \"purchase_date\": \"<date>\",\n    \"warranty_expiry_date\": \"<date>\",\n    \"placed_in_service\": \"<date>\",\n    \"useful_life\": {\n      \"type\": \"<string>\",\n      \"value\": \"<integer>\"\n    },\n    \"asset_category\": \"<string>\",\n    \"asset_product\": \"<string>\",\n    \"asset_serial_number\": \"<string>\",\n    \"asset_parts\": [\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      },\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      }\n    ],\n    \"customer\": \"<string>\",\n    \"property\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"asset_inspection_form\": \"<string>\",\n    \"parent_asset\": \"<string>\",\n    \"asset_location\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    }\n  },\n  \"asset_attachments\": [\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    },\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"success\",\n  \"message\": \"New asset Created successfully\",\n  \"data\": {\n    \"asset_uid\": \"461bc165-d7c6-2b38-2902-7896024b4491\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31219981-8d79-4506-834d-bb1a49688145",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"asset_code\": \"<string>\",\n    \"asset_name\": \"<string>\",\n    \"purchase_date\": \"<date>\",\n    \"warranty_expiry_date\": \"<date>\",\n    \"placed_in_service\": \"<date>\",\n    \"useful_life\": {\n      \"type\": \"<string>\",\n      \"value\": \"<integer>\"\n    },\n    \"asset_category\": \"<string>\",\n    \"asset_product\": \"<string>\",\n    \"asset_serial_number\": \"<string>\",\n    \"asset_parts\": [\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      },\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      }\n    ],\n    \"customer\": \"<string>\",\n    \"property\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"asset_inspection_form\": \"<string>\",\n    \"parent_asset\": \"<string>\",\n    \"asset_location\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    }\n  },\n  \"asset_attachments\": [\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    },\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1fa6743a-e959-43e2-b546-9ef421fbf3b9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"asset_code\": \"<string>\",\n    \"asset_name\": \"<string>\",\n    \"purchase_date\": \"<date>\",\n    \"warranty_expiry_date\": \"<date>\",\n    \"placed_in_service\": \"<date>\",\n    \"useful_life\": {\n      \"type\": \"<string>\",\n      \"value\": \"<integer>\"\n    },\n    \"asset_category\": \"<string>\",\n    \"asset_product\": \"<string>\",\n    \"asset_serial_number\": \"<string>\",\n    \"asset_parts\": [\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      },\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      }\n    ],\n    \"customer\": \"<string>\",\n    \"property\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"asset_inspection_form\": \"<string>\",\n    \"parent_asset\": \"<string>\",\n    \"asset_location\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    }\n  },\n  \"asset_attachments\": [\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    },\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67e3eca1-d2e7-4899-a7f2-8d8fa85beb65",
+              "name": "Invalid Organization UID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"asset_code\": \"<string>\",\n    \"asset_name\": \"<string>\",\n    \"purchase_date\": \"<date>\",\n    \"warranty_expiry_date\": \"<date>\",\n    \"placed_in_service\": \"<date>\",\n    \"useful_life\": {\n      \"type\": \"<string>\",\n      \"value\": \"<integer>\"\n    },\n    \"asset_category\": \"<string>\",\n    \"asset_product\": \"<string>\",\n    \"asset_serial_number\": \"<string>\",\n    \"asset_parts\": [\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      },\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      }\n    ],\n    \"customer\": \"<string>\",\n    \"property\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"asset_inspection_form\": \"<string>\",\n    \"parent_asset\": \"<string>\",\n    \"asset_location\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    }\n  },\n  \"asset_attachments\": [\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    },\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4ab985b-9a4e-456a-ab14-dd8ae044eef0",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"asset_code\": \"<string>\",\n    \"asset_name\": \"<string>\",\n    \"purchase_date\": \"<date>\",\n    \"warranty_expiry_date\": \"<date>\",\n    \"placed_in_service\": \"<date>\",\n    \"useful_life\": {\n      \"type\": \"<string>\",\n      \"value\": \"<integer>\"\n    },\n    \"asset_category\": \"<string>\",\n    \"asset_product\": \"<string>\",\n    \"asset_serial_number\": \"<string>\",\n    \"asset_parts\": [\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      },\n      {\n        \"quantity\": \"<integer>\",\n        \"serial_nos\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"product_id\": \"<string>\"\n      }\n    ],\n    \"customer\": \"<string>\",\n    \"property\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"asset_inspection_form\": \"<string>\",\n    \"parent_asset\": \"<string>\",\n    \"asset_location\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    }\n  },\n  \"asset_attachments\": [\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    },\n    {\n      \"file_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"visible_to_customer\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f9c8c77-ec8b-4c08-be41-33f54af31ede",
+          "name": "Get Asset Details",
+          "request": {
+            "name": "Get Asset Details",
+            "description": {
+              "content": "Retrieve detailed information for a specific asset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":asset_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "asset_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c33a1c9-4831-457e-99d4-9fa2c924e8c5",
+              "name": "Asset details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":asset_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "asset_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"asset_uid\": \"52fde765-1793-b892-8050-2e304a7bae7f\",\n  \"asset_code\": \"string\",\n  \"asset_name\": \"string\",\n  \"asset_serial_number\": \"string\",\n  \"purchase_date\": \"2023-02-21\",\n  \"warranty_expiry_date\": \"2017-04-07\",\n  \"placed_in_service\": \"1973-09-04\",\n  \"useful_life\": {\n    \"type\": \"DAYS\",\n    \"value\": 583\n  },\n  \"customer\": \"string\",\n  \"property\": \"string\",\n  \"organization\": \"string\",\n  \"asset_location\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5599aa40-cb98-45de-a36e-6a939bd8742e",
+              "name": "Asset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":asset_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "asset_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff296c7f-1ece-4384-8ec7-30e1bda46f21",
+          "name": "Update Asset",
+          "request": {
+            "name": "Update Asset",
+            "description": {
+              "content": "Update an existing asset record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":asset_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "asset_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"asset_uid\": \"<uuid>\",\n  \"asset_code\": \"<string>\",\n  \"asset_name\": \"<string>\",\n  \"asset_serial_number\": \"<string>\",\n  \"purchase_date\": \"<date>\",\n  \"warranty_expiry_date\": \"<date>\",\n  \"placed_in_service\": \"<date>\",\n  \"useful_life\": {\n    \"type\": \"<string>\",\n    \"value\": \"<integer>\"\n  },\n  \"customer\": \"<string>\",\n  \"property\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"asset_location\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02756b69-046b-4048-91b3-549f83e8fadf",
+              "name": "Asset updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":asset_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "asset_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset_uid\": \"<uuid>\",\n  \"asset_code\": \"<string>\",\n  \"asset_name\": \"<string>\",\n  \"asset_serial_number\": \"<string>\",\n  \"purchase_date\": \"<date>\",\n  \"warranty_expiry_date\": \"<date>\",\n  \"placed_in_service\": \"<date>\",\n  \"useful_life\": {\n    \"type\": \"<string>\",\n    \"value\": \"<integer>\"\n  },\n  \"customer\": \"<string>\",\n  \"property\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"asset_location\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9d1ec4e-268f-4d61-9620-756a1ce2e372",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":asset_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "asset_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset_uid\": \"<uuid>\",\n  \"asset_code\": \"<string>\",\n  \"asset_name\": \"<string>\",\n  \"asset_serial_number\": \"<string>\",\n  \"purchase_date\": \"<date>\",\n  \"warranty_expiry_date\": \"<date>\",\n  \"placed_in_service\": \"<date>\",\n  \"useful_life\": {\n    \"type\": \"<string>\",\n    \"value\": \"<integer>\"\n  },\n  \"customer\": \"<string>\",\n  \"property\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"asset_location\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10778292-0b8a-4a69-bbc1-978daa405c37",
+          "name": "Delete Asset",
+          "request": {
+            "name": "Delete Asset",
+            "description": {
+              "content": "Delete an asset record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":asset_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "asset_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ce7a7d0-fa5c-4861-a21e-dd31af8b3413",
+              "name": "Asset deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":asset_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "asset_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5016ecc6-0ad5-4c9c-8d53-a15fa35192b7",
+              "name": "Asset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":asset_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "asset_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Data-center region identifier returned by the config endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us1",
+      "key": "dc_region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{dc_region}}.zuperpro.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bc9bf995-de18-4d20-8e3b-c99c6d9c5897",
+    "name": "Zuper REST Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

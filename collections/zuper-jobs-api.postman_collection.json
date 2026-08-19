@@ -1,0 +1,1225 @@
+{
+  "item": [
+    {
+      "id": "5eeb8a66-4157-4398-adbe-e135a24d13e2",
+      "name": "Jobs",
+      "description": {
+        "content": "Job lifecycle management — creation, scheduling, assignment, status updates, and route optimization",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a46bcb35-b989-4881-9c72-052cdf884755",
+          "name": "Get Jobs",
+          "request": {
+            "name": "Get Jobs",
+            "description": {
+              "content": "Retrieve a paginated, filterable list of jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "Number of records per page (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "DESC"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "work_order_number"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_type",
+                  "value": "scheduled_date"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.priority",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.customer",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.category",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.keyword",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.job_tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.job_status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.from_date",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.to_date",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.updated_at",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.assigned_to",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.assigned_to_team",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.is_deleted",
+                  "value": "<boolean>",
+                  "description": "Show deleted jobs (max 90 days)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.is_invoiced",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.job_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.due_date_from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.due_date_to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.customer_feedback",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.asset",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.property",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.project",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.business_unit",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da9deb5d-6675-4e48-9c29-12aa9d24c29a",
+              "name": "Paginated list of jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "work_order_number"
+                    },
+                    {
+                      "key": "date_type",
+                      "value": "scheduled_date"
+                    },
+                    {
+                      "key": "filter.priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.job_tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.job_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.assigned_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.assigned_to_team",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.is_deleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_invoiced",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.due_date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.due_date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.customer_feedback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.property",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.business_unit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"total_records\": 8891,\n  \"current_page\": 2689,\n  \"total_pages\": 7498,\n  \"data\": [\n    {\n      \"job_uid\": \"7e2e2b26-6086-dc65-432d-8fc16b72fcd4\",\n      \"job_title\": \"string\",\n      \"job_category\": \"string\",\n      \"job_priority\": \"HIGH\",\n      \"job_type\": \"NEW\",\n      \"job_description\": \"string\",\n      \"job_tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scheduled_start_time\": \"1967-06-17T04:14:04.019Z\",\n      \"scheduled_end_time\": \"2025-11-01T02:10:44.406Z\",\n      \"due_date\": \"1994-02-07T01:05:10.739Z\",\n      \"assigned_to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"assigned_to_team\": [\n        \"string\",\n        \"string\"\n      ],\n      \"customer_uid\": \"a144d330-dc75-d543-14fe-df83d8303e38\",\n      \"assets\": [\n        \"string\",\n        \"string\"\n      ],\n      \"products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"job_uid\": \"0f00dadf-7125-5893-4383-fe64cae071c1\",\n      \"job_title\": \"string\",\n      \"job_category\": \"string\",\n      \"job_priority\": \"URGENT\",\n      \"job_type\": \"NEW\",\n      \"job_description\": \"string\",\n      \"job_tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scheduled_start_time\": \"1979-06-28T16:46:36.395Z\",\n      \"scheduled_end_time\": \"2018-09-04T02:59:10.377Z\",\n      \"due_date\": \"2005-05-25T11:58:07.893Z\",\n      \"assigned_to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"assigned_to_team\": [\n        \"string\",\n        \"string\"\n      ],\n      \"customer_uid\": \"782ee558-81d6-f092-ad9e-937319d68a9a\",\n      \"assets\": [\n        \"string\",\n        \"string\"\n      ],\n      \"products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8fec7dd-4547-4459-8c5d-b345a3e347d6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "work_order_number"
+                    },
+                    {
+                      "key": "date_type",
+                      "value": "scheduled_date"
+                    },
+                    {
+                      "key": "filter.priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.job_tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.job_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.assigned_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.assigned_to_team",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.is_deleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_invoiced",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.due_date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.due_date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.customer_feedback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.property",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.business_unit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d380acf0-f48a-4301-979f-ad64280faea4",
+          "name": "Create a Job",
+          "request": {
+            "name": "Create a Job",
+            "description": {
+              "content": "Create a new job in the field service management system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "check_assignment_conflict",
+                  "value": "false",
+                  "description": "Check for scheduling conflicts before creating"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_title\": \"<string>\",\n  \"job_category\": \"<string>\",\n  \"job_priority\": \"<string>\",\n  \"job_type\": \"<string>\",\n  \"job_description\": \"<string>\",\n  \"job_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"assigned_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assigned_to_team\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_uid\": \"<uuid>\",\n  \"customer\": \"<object>\",\n  \"assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"service_task\": \"<string>\",\n  \"service_contract\": \"<string>\",\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b39f6055-360e-4dfb-b038-5db1332a46bc",
+              "name": "Job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "check_assignment_conflict",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_title\": \"<string>\",\n  \"job_category\": \"<string>\",\n  \"job_priority\": \"<string>\",\n  \"job_type\": \"<string>\",\n  \"job_description\": \"<string>\",\n  \"job_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"assigned_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assigned_to_team\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_uid\": \"<uuid>\",\n  \"customer\": \"<object>\",\n  \"assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"service_task\": \"<string>\",\n  \"service_contract\": \"<string>\",\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"success\",\n  \"message\": \"New Job Created successfully\",\n  \"job_uid\": \"36d2da43-6e7f-3546-0af9-736a0cc20de2\",\n  \"customer_uid\": \"aea3e491-0340-2edc-3c27-02b2a7ccff26\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9414d80-bff8-4ce3-a7cd-3a40fcebd3bd",
+              "name": "Bad request - customer or organization data required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "check_assignment_conflict",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_title\": \"<string>\",\n  \"job_category\": \"<string>\",\n  \"job_priority\": \"<string>\",\n  \"job_type\": \"<string>\",\n  \"job_description\": \"<string>\",\n  \"job_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"assigned_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assigned_to_team\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_uid\": \"<uuid>\",\n  \"customer\": \"<object>\",\n  \"assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"service_task\": \"<string>\",\n  \"service_contract\": \"<string>\",\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b69b9a77-12ed-4a0d-82b4-5c0c72fb8577",
+          "name": "Get Job Details",
+          "request": {
+            "name": "Get Job Details",
+            "description": {
+              "content": "Retrieve detailed information for a specific job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91486eaa-86e5-4035-8d48-ec3a9bafb1f2",
+              "name": "Job details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_uid\": \"ee9037de-2fee-29b1-5240-4e7916b11ef4\",\n  \"job_title\": \"string\",\n  \"job_category\": \"string\",\n  \"job_priority\": \"HIGH\",\n  \"job_type\": \"NEW\",\n  \"job_description\": \"string\",\n  \"job_tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"scheduled_start_time\": \"1973-12-15T10:00:59.002Z\",\n  \"scheduled_end_time\": \"1983-08-24T00:32:36.206Z\",\n  \"due_date\": \"1990-05-09T00:41:48.581Z\",\n  \"assigned_to\": [\n    \"string\",\n    \"string\"\n  ],\n  \"assigned_to_team\": [\n    \"string\",\n    \"string\"\n  ],\n  \"customer_uid\": \"879d9318-bfbc-daf8-f757-bcbb1245d34f\",\n  \"assets\": [\n    \"string\",\n    \"string\"\n  ],\n  \"products\": [\n    \"string\",\n    \"string\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "505c2bd6-3f19-4f11-8bb0-c25a9193d402",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bf4f1cf-941e-4dff-b334-f2a0bfb1351c",
+          "name": "Update a Job",
+          "request": {
+            "name": "Update a Job",
+            "description": {
+              "content": "Update an existing job record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_uid\": \"<uuid>\",\n  \"job_title\": \"<string>\",\n  \"job_category\": \"<string>\",\n  \"job_priority\": \"<string>\",\n  \"job_type\": \"<string>\",\n  \"job_description\": \"<string>\",\n  \"job_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"assigned_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assigned_to_team\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_uid\": \"<uuid>\",\n  \"assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e3dcd6d-c646-4412-9065-ec5a03bf7f74",
+              "name": "Job updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_uid\": \"<uuid>\",\n  \"job_title\": \"<string>\",\n  \"job_category\": \"<string>\",\n  \"job_priority\": \"<string>\",\n  \"job_type\": \"<string>\",\n  \"job_description\": \"<string>\",\n  \"job_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"assigned_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assigned_to_team\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_uid\": \"<uuid>\",\n  \"assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70a671c9-b334-4764-bac9-37e209380a4a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_uid\": \"<uuid>\",\n  \"job_title\": \"<string>\",\n  \"job_category\": \"<string>\",\n  \"job_priority\": \"<string>\",\n  \"job_type\": \"<string>\",\n  \"job_description\": \"<string>\",\n  \"job_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"assigned_to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assigned_to_team\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_uid\": \"<uuid>\",\n  \"assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "173d76aa-612b-431a-8ddb-d5bee9349b35",
+          "name": "Delete a Job",
+          "request": {
+            "name": "Delete a Job",
+            "description": {
+              "content": "Delete a job record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c4d0fa1-e3b8-4751-b163-e1e7871db491",
+              "name": "Job deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "617ea7ef-18e2-4a70-a86d-821854837c9e",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Data-center region identifier returned by the config endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us1",
+      "key": "dc_region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{dc_region}}.zuperpro.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bd0e61de-5bdf-4e26-ba4b-949a7c977bf6",
+    "name": "Zuper REST Assets Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuper REST Assets Webhooks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/webhooks"
+          },
+          "docs": "Retrieve all configured webhooks."
+        },
+        {
+          "info": {
+            "name": "Create a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dc_region}.zuperpro.com/api/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new webhook endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Webhook Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/webhooks/:webhook_uid",
+            "params": [
+              {
+                "name": "webhook_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific webhook."
+        },
+        {
+          "info": {
+            "name": "Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dc_region}.zuperpro.com/api/webhooks/:webhook_uid",
+            "params": [
+              {
+                "name": "webhook_uid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dc_region}.zuperpro.com/api/webhooks/:webhook_uid",
+            "params": [
+              {
+                "name": "webhook_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook registration."
+        },
+        {
+          "info": {
+            "name": "Activate/Deactivate Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dc_region}.zuperpro.com/api/webhooks/:webhook_uid/activate",
+            "params": [
+              {
+                "name": "webhook_uid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Toggle the active status of a webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,648 @@
+{
+  "item": [
+    {
+      "id": "0a1acc8f-f9bc-4446-af9f-86d154180baa",
+      "name": "Properties",
+      "description": {
+        "content": "Service property management and service task assignment",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d39c9330-d242-4ba6-a0ae-55348d0bff22",
+          "name": "Get All Properties",
+          "request": {
+            "name": "Get All Properties",
+            "description": {
+              "content": "Retrieve a paginated list of properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "Number of records per page (max 1000)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af4ed4b1-d973-44ff-9311-c0925ef5650b",
+              "name": "Paginated list of properties",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"total_records\": 333,\n  \"current_page\": 5353,\n  \"total_pages\": 4801\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "965f0c78-3ee0-40d4-80fc-f31d2815afe9",
+          "name": "Create Property",
+          "request": {
+            "name": "Create Property",
+            "description": {
+              "content": "Create a new property record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_name\": \"<string>\",\n  \"property_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2b3036a-aa1b-474c-b0a5-1095aa4b631a",
+              "name": "Property created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"property_name\": \"<string>\",\n  \"property_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6ddf991-35ae-426f-806c-fcdf7237dde4",
+          "name": "Get Property Details",
+          "request": {
+            "name": "Get Property Details",
+            "description": {
+              "content": "Retrieve details for a specific property.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":property_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "property_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d940416-f7e3-4782-8661-3f2ece0c68f4",
+              "name": "Property details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":property_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "property_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bb5173e8-d623-466f-8a92-a5a37da2f4f8",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":property_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "property_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50830c63-35dd-465f-ad14-007bc3bfd7fa",
+          "name": "Update Property Details",
+          "request": {
+            "name": "Update Property Details",
+            "description": {
+              "content": "Update an existing property record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":property_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "property_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9beca23-5135-45e7-a1ee-9d9df054d7f4",
+              "name": "Property updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":property_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "property_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1903e213-6998-4056-b2c9-b481212dec78",
+          "name": "Delete Property",
+          "request": {
+            "name": "Delete Property",
+            "description": {
+              "content": "Delete a property record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":property_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "property_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b05ab987-92f0-4b82-9882-686b50959fa0",
+              "name": "Property deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":property_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "property_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Data-center region identifier returned by the config endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us1",
+      "key": "dc_region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{dc_region}}.zuperpro.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8dcff80c-07ec-4415-8bc7-e6196669d99d",
+    "name": "Zuper REST Assets Properties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

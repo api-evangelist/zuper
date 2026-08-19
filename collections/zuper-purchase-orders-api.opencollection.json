@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuper REST Assets Purchase Orders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Purchase Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Purchase Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/purchase_orders",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (max 1000)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of purchase orders."
+        },
+        {
+          "info": {
+            "name": "Create Purchase Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dc_region}.zuperpro.com/api/purchase_orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new purchase order."
+        },
+        {
+          "info": {
+            "name": "Get Purchase Order Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/purchase_orders/:purchase_order_uid",
+            "params": [
+              {
+                "name": "purchase_order_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific purchase order."
+        },
+        {
+          "info": {
+            "name": "Update Purchase Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dc_region}.zuperpro.com/api/purchase_orders/:purchase_order_uid",
+            "params": [
+              {
+                "name": "purchase_order_uid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing purchase order."
+        },
+        {
+          "info": {
+            "name": "Delete Purchase Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dc_region}.zuperpro.com/api/purchase_orders/:purchase_order_uid",
+            "params": [
+              {
+                "name": "purchase_order_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a purchase order."
+        },
+        {
+          "info": {
+            "name": "Send Purchase Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dc_region}.zuperpro.com/api/purchase_orders/:purchase_order_uid/send",
+            "params": [
+              {
+                "name": "purchase_order_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send a purchase order to the vendor."
+        },
+        {
+          "info": {
+            "name": "Update Purchase Order Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dc_region}.zuperpro.com/api/purchase_orders/:purchase_order_uid/status",
+            "params": [
+              {
+                "name": "purchase_order_uid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of a purchase order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

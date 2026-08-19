@@ -1,0 +1,845 @@
+{
+  "item": [
+    {
+      "id": "154928bf-9d99-4031-8838-82b66cb99767",
+      "name": "Invoices",
+      "description": {
+        "content": "Invoice generation, management, and status tracking",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee88b226-76f9-401a-beb5-adf9d8f976f7",
+          "name": "Get All Invoices",
+          "request": {
+            "name": "Get All Invoices",
+            "description": {
+              "content": "Retrieve a paginated list of invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "Number of records per page (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "DESC"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91af5081-1365-429e-b757-e8c048c6fdca",
+              "name": "Paginated list of invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"total_records\": 8507,\n  \"current_page\": 7190,\n  \"total_pages\": 4089,\n  \"data\": [\n    {\n      \"invoice_uid\": \"ccebd076-7298-808f-1f7c-4182e475c95b\",\n      \"reference_no\": \"string\",\n      \"description\": \"string\",\n      \"invoice_date\": \"1973-07-13T17:30:12.270Z\",\n      \"due_date\": \"2013-05-12T23:37:05.260Z\",\n      \"customer\": \"string\",\n      \"organization\": \"string\",\n      \"property\": \"string\",\n      \"job\": \"string\",\n      \"line_items\": [\n        {\n          \"name\": \"string\",\n          \"quantity\": 1685.7667130803145,\n          \"unit_price\": 1750.3515693851923,\n          \"discount\": 6460.597957489842,\n          \"tax\": 7321.41803040825,\n          \"total\": 1398.5203563101102\n        },\n        {\n          \"name\": \"string\",\n          \"quantity\": 522.9710731790527,\n          \"unit_price\": 9079.909634021553,\n          \"discount\": 8039.7764368584885,\n          \"tax\": 9786.23725548075,\n          \"total\": 8526.676425266998\n        }\n      ],\n      \"sub_total\": 3271.627587381003,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"invoice_uid\": \"5db041a0-a01b-f064-3756-698c48ebcc64\",\n      \"reference_no\": \"string\",\n      \"description\": \"string\",\n      \"invoice_date\": \"1982-07-23T12:45:39.085Z\",\n      \"due_date\": \"2003-06-12T12:42:30.168Z\",\n      \"customer\": \"string\",\n      \"organization\": \"string\",\n      \"property\": \"string\",\n      \"job\": \"string\",\n      \"line_items\": [\n        {\n          \"name\": \"string\",\n          \"quantity\": 2054.9582704757177,\n          \"unit_price\": 4833.7056404828245,\n          \"discount\": 4439.084645364261,\n          \"tax\": 1465.623753198504,\n          \"total\": 1588.685548633556\n        },\n        {\n          \"name\": \"string\",\n          \"quantity\": 4388.535109908947,\n          \"unit_price\": 5601.1930449142155,\n          \"discount\": 9353.15490850461,\n          \"tax\": 5005.133267836728,\n          \"total\": 3110.0691998638463\n        }\n      ],\n      \"sub_total\": 6733.919377609215,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b12b8a65-7429-4bdb-b506-31c6aec8c73c",
+          "name": "Create an Invoice",
+          "request": {
+            "name": "Create an Invoice",
+            "description": {
+              "content": "Create a new invoice record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice\": {\n    \"reference_no\": \"<string>\",\n    \"description\": \"<string>\",\n    \"invoice_date\": \"<dateTime>\",\n    \"due_date\": \"<dateTime>\",\n    \"prefix\": \"<string>\",\n    \"customer\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"property\": \"<string>\",\n    \"job\": \"<string>\",\n    \"estimate\": \"<string>\",\n    \"template\": \"<string>\",\n    \"payment_term\": \"<string>\",\n    \"payment_mode\": \"<string>\",\n    \"service_contract\": \"<string>\",\n    \"customer_billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"customer_service_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"line_items\": [\n      {\n        \"name\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"unit_price\": \"<number>\",\n        \"discount\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"total\": \"<number>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"unit_price\": \"<number>\",\n        \"discount\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"total\": \"<number>\"\n      }\n    ],\n    \"sub_total\": \"<number>\",\n    \"remarks\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"custom_fields\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"module_name\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"module_name\": \"<string>\"\n      }\n    ],\n    \"bu_uid\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c65eed9-71ab-4257-bde5-3db92ddeddfb",
+              "name": "Invoice created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice\": {\n    \"reference_no\": \"<string>\",\n    \"description\": \"<string>\",\n    \"invoice_date\": \"<dateTime>\",\n    \"due_date\": \"<dateTime>\",\n    \"prefix\": \"<string>\",\n    \"customer\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"property\": \"<string>\",\n    \"job\": \"<string>\",\n    \"estimate\": \"<string>\",\n    \"template\": \"<string>\",\n    \"payment_term\": \"<string>\",\n    \"payment_mode\": \"<string>\",\n    \"service_contract\": \"<string>\",\n    \"customer_billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"customer_service_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"line_items\": [\n      {\n        \"name\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"unit_price\": \"<number>\",\n        \"discount\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"total\": \"<number>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"unit_price\": \"<number>\",\n        \"discount\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"total\": \"<number>\"\n      }\n    ],\n    \"sub_total\": \"<number>\",\n    \"remarks\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"custom_fields\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"module_name\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"module_name\": \"<string>\"\n      }\n    ],\n    \"bu_uid\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b316359b-7e06-46b6-a63a-58b41867cf25",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice\": {\n    \"reference_no\": \"<string>\",\n    \"description\": \"<string>\",\n    \"invoice_date\": \"<dateTime>\",\n    \"due_date\": \"<dateTime>\",\n    \"prefix\": \"<string>\",\n    \"customer\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"property\": \"<string>\",\n    \"job\": \"<string>\",\n    \"estimate\": \"<string>\",\n    \"template\": \"<string>\",\n    \"payment_term\": \"<string>\",\n    \"payment_mode\": \"<string>\",\n    \"service_contract\": \"<string>\",\n    \"customer_billing_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"customer_service_address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"geo_coordinates\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      }\n    },\n    \"line_items\": [\n      {\n        \"name\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"unit_price\": \"<number>\",\n        \"discount\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"total\": \"<number>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"unit_price\": \"<number>\",\n        \"discount\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"total\": \"<number>\"\n      }\n    ],\n    \"sub_total\": \"<number>\",\n    \"remarks\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"custom_fields\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"module_name\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"module_name\": \"<string>\"\n      }\n    ],\n    \"bu_uid\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56cd0087-609b-46ca-a2eb-a4672c567ef5",
+          "name": "Get Invoice Details",
+          "request": {
+            "name": "Get Invoice Details",
+            "description": {
+              "content": "Retrieve detailed information for a specific invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice",
+                ":invoice_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoice_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96076585-715e-425f-8914-6a48fbef66ac",
+              "name": "Invoice details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoice_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoice_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoice_uid\": \"7c09cf00-d439-20a9-79fe-bc95d2fd4eac\",\n  \"reference_no\": \"string\",\n  \"description\": \"string\",\n  \"invoice_date\": \"2005-11-29T19:36:50.459Z\",\n  \"due_date\": \"1993-05-21T11:33:57.168Z\",\n  \"customer\": \"string\",\n  \"organization\": \"string\",\n  \"property\": \"string\",\n  \"job\": \"string\",\n  \"line_items\": [\n    {\n      \"name\": \"string\",\n      \"quantity\": 7943.2391960469495,\n      \"unit_price\": 4904.543319781404,\n      \"discount\": 8777.217569205708,\n      \"tax\": 6831.719896314984,\n      \"total\": 1056.9186125345286\n    },\n    {\n      \"name\": \"string\",\n      \"quantity\": 6051.147851227937,\n      \"unit_price\": 192.31994821524933,\n      \"discount\": 8876.356650993059,\n      \"tax\": 5169.405187609,\n      \"total\": 6837.257803507038\n    }\n  ],\n  \"sub_total\": 8587.803597095983,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22472f96-273c-4691-811f-718f9ec1ee2f",
+              "name": "Invoice not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoice_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoice_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84aed513-743b-4660-b7f7-52f985ab1ecf",
+          "name": "Update an Invoice",
+          "request": {
+            "name": "Update an Invoice",
+            "description": {
+              "content": "Update an existing invoice record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice",
+                ":invoice_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoice_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_uid\": \"<uuid>\",\n  \"reference_no\": \"<string>\",\n  \"description\": \"<string>\",\n  \"invoice_date\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"customer\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"property\": \"<string>\",\n  \"job\": \"<string>\",\n  \"line_items\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount\": \"<number>\",\n      \"tax\": \"<number>\",\n      \"total\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount\": \"<number>\",\n      \"tax\": \"<number>\",\n      \"total\": \"<number>\"\n    }\n  ],\n  \"sub_total\": \"<number>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd0be7d5-2f98-4f36-9b8e-136f384b9e25",
+              "name": "Invoice updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoice_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoice_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_uid\": \"<uuid>\",\n  \"reference_no\": \"<string>\",\n  \"description\": \"<string>\",\n  \"invoice_date\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"customer\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"property\": \"<string>\",\n  \"job\": \"<string>\",\n  \"line_items\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount\": \"<number>\",\n      \"tax\": \"<number>\",\n      \"total\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount\": \"<number>\",\n      \"tax\": \"<number>\",\n      \"total\": \"<number>\"\n    }\n  ],\n  \"sub_total\": \"<number>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e30ace5-776f-4237-b1f4-771ae6af5fa9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoice_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoice_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_uid\": \"<uuid>\",\n  \"reference_no\": \"<string>\",\n  \"description\": \"<string>\",\n  \"invoice_date\": \"<dateTime>\",\n  \"due_date\": \"<dateTime>\",\n  \"customer\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"property\": \"<string>\",\n  \"job\": \"<string>\",\n  \"line_items\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount\": \"<number>\",\n      \"tax\": \"<number>\",\n      \"total\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount\": \"<number>\",\n      \"tax\": \"<number>\",\n      \"total\": \"<number>\"\n    }\n  ],\n  \"sub_total\": \"<number>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a036fd7-74c0-430c-886d-b9258dd31e13",
+          "name": "Delete an Invoice",
+          "request": {
+            "name": "Delete an Invoice",
+            "description": {
+              "content": "Delete an invoice record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice",
+                ":invoice_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoice_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c1ae2d3-3e79-4b8b-a3c4-4576f5908dc3",
+              "name": "Invoice deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoice_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoice_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd8fbcca-bbc0-4994-9adf-14565ed39293",
+              "name": "Invoice not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoice_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoice_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Data-center region identifier returned by the config endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us1",
+      "key": "dc_region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{dc_region}}.zuperpro.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7467b9b9-176a-44f2-936f-9a6bcf4ec29b",
+    "name": "Zuper REST Assets Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

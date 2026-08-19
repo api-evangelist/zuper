@@ -1,0 +1,1425 @@
+{
+  "item": [
+    {
+      "id": "ffe8d2a9-0738-45a0-8174-1b8a8a43f04e",
+      "name": "Customers",
+      "description": {
+        "content": "Customer relationship management — create, update, search, and manage customer records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7853d10f-4051-4a80-af72-b6ff9f63e614",
+          "name": "Get All Customers",
+          "request": {
+            "name": "Get All Customers",
+            "description": {
+              "content": "Retrieve a paginated list of customers with filtering and sorting options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "Number of records per page (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "DESC"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "created_at"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.keyword",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.zipcode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.customer_tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.is_active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.is_deleted",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.is_portal_enabled",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.from_date",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.to_date",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.updated_at_from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.updated_at_to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.customer_uid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.customer_email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.customer_organization",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.has_org",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.do_not_service",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.has_card_on_file",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.account_manager",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.created_by",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4537f724-c89e-44c9-95fc-011df03dd5b5",
+              "name": "Paginated list of customers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "filter.keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.zipcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_deleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_portal_enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.customer_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.has_org",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.do_not_service",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.has_card_on_file",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.account_manager",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.created_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"total_records\": 247,\n  \"current_page\": 9036,\n  \"total_pages\": 6858,\n  \"data\": [\n    {\n      \"customer_uid\": \"0a15c454-d32b-814c-2ba9-5bc65cec496c\",\n      \"customer_first_name\": \"string\",\n      \"customer_last_name\": \"string\",\n      \"customer_email\": \"Wliyd-KWWGchT@NTQRhPtJRcQvYnrYemIftKCgrSYYYaeiK.ehv\",\n      \"customer_company_name\": \"string\",\n      \"customer_contact_no\": {\n        \"mobile\": \"string\",\n        \"home\": \"string\",\n        \"work\": \"string\"\n      },\n      \"customer_tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"customer_address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\",\n        \"zip_code\": \"string\",\n        \"geo_coordinates\": {\n          \"latitude\": 7749.677267530033,\n          \"longitude\": 7358.738184882907\n        }\n      },\n      \"customer_billing_address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\",\n        \"zip_code\": \"string\",\n        \"geo_coordinates\": {\n          \"latitude\": 2377.3885169441687,\n          \"longitude\": 3112.5319065198973\n        }\n      },\n      \"custom_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        }\n      ],\n      \"has_sla\": true,\n      \"accounts\": {\n        \"ltv\": 8352,\n        \"receivables\": 9841,\n        \"credits\": 2368\n      },\n      \"is_active\": true,\n      \"is_portal_enabled\": false,\n      \"has_card_on_file\": true,\n      \"tax\": {\n        \"tax_exempt\": true\n      },\n      \"created_at\": \"1991-12-16T01:53:59.435Z\"\n    },\n    {\n      \"customer_uid\": \"e1e4022b-b11b-ac05-da49-08efd3c71bad\",\n      \"customer_first_name\": \"string\",\n      \"customer_last_name\": \"string\",\n      \"customer_email\": \"CV8-czD3xg@HjiIuuKGpuukSGYkytDHF.mkok\",\n      \"customer_company_name\": \"string\",\n      \"customer_contact_no\": {\n        \"mobile\": \"string\",\n        \"home\": \"string\",\n        \"work\": \"string\"\n      },\n      \"customer_tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"customer_address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\",\n        \"zip_code\": \"string\",\n        \"geo_coordinates\": {\n          \"latitude\": 7256.024667063539,\n          \"longitude\": 2157.394617788987\n        }\n      },\n      \"customer_billing_address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\",\n        \"zip_code\": \"string\",\n        \"geo_coordinates\": {\n          \"latitude\": 2790.354737274445,\n          \"longitude\": 7598.201905528652\n        }\n      },\n      \"custom_fields\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\",\n          \"type\": \"string\",\n          \"module_name\": \"string\"\n        }\n      ],\n      \"has_sla\": false,\n      \"accounts\": {\n        \"ltv\": 481,\n        \"receivables\": 1371,\n        \"credits\": 1988\n      },\n      \"is_active\": true,\n      \"is_portal_enabled\": false,\n      \"has_card_on_file\": false,\n      \"tax\": {\n        \"tax_exempt\": false\n      },\n      \"created_at\": \"2014-09-28T10:15:48.989Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03ab7501-3035-42a9-85c2-f9e7df58439f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "filter.keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.zipcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_deleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_portal_enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.customer_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.has_org",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.do_not_service",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.has_card_on_file",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.account_manager",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.created_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "964e90ed-5d7e-4aef-81f8-970f1634abec",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "filter.keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.zipcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_deleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.is_portal_enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.updated_at_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter.customer_uid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.customer_organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.has_org",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.do_not_service",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.has_card_on_file",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.account_manager",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.created_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bf5ed9f-fd4f-4b86-a72a-97ca89e8419d",
+          "name": "Create a Customer",
+          "request": {
+            "name": "Create a Customer",
+            "description": {
+              "content": "Create a new customer record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"customer_email\": \"<email>\",\n  \"customer_company_name\": \"<string>\",\n  \"customer_contact_no\": {\n    \"mobile\": \"<string>\",\n    \"home\": \"<string>\",\n    \"work\": \"<string>\"\n  },\n  \"customer_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_billing_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7a456ba-3663-49e1-9a48-6e635bc377c3",
+              "name": "Customer created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"customer_email\": \"<email>\",\n  \"customer_company_name\": \"<string>\",\n  \"customer_contact_no\": {\n    \"mobile\": \"<string>\",\n    \"home\": \"<string>\",\n    \"work\": \"<string>\"\n  },\n  \"customer_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_billing_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"customer_uid\": \"2b4d945c-3d1f-ab04-292d-0f82d56973bf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77d6aa9d-51b3-44c7-9c50-077157e974f6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"customer_email\": \"<email>\",\n  \"customer_company_name\": \"<string>\",\n  \"customer_contact_no\": {\n    \"mobile\": \"<string>\",\n    \"home\": \"<string>\",\n    \"work\": \"<string>\"\n  },\n  \"customer_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_billing_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23843cb2-c6af-4592-87ed-f57ec2660977",
+          "name": "Get Customer Details",
+          "request": {
+            "name": "Get Customer Details",
+            "description": {
+              "content": "Retrieve detailed information for a specific customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customer_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customer_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa8bae5e-b58c-418e-8261-1215939c94aa",
+              "name": "Customer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customer_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer_uid\": \"9c8c7b6e-76d8-943d-154b-5d0e58370fbb\",\n  \"customer_first_name\": \"string\",\n  \"customer_last_name\": \"string\",\n  \"customer_email\": \"5X1qkVEWJUwhg@SVq.dkv\",\n  \"customer_company_name\": \"string\",\n  \"customer_contact_no\": {\n    \"mobile\": \"<string>\",\n    \"home\": \"<string>\",\n    \"work\": \"<string>\"\n  },\n  \"customer_tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"customer_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_billing_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ],\n  \"has_sla\": false,\n  \"accounts\": {\n    \"ltv\": 7136,\n    \"receivables\": 3433,\n    \"credits\": 4714\n  },\n  \"is_active\": false,\n  \"is_portal_enabled\": false,\n  \"has_card_on_file\": false,\n  \"tax\": {\n    \"tax_exempt\": true\n  },\n  \"created_at\": \"1962-07-22T14:29:18.286Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd37c776-8909-4073-9e68-ea51e874ce32",
+              "name": "Customer not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customer_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41518c37-d012-44b7-8528-eb2e34449caf",
+          "name": "Update Customer",
+          "request": {
+            "name": "Update Customer",
+            "description": {
+              "content": "Update an existing customer record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customer_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customer_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_uid\": \"<uuid>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"customer_email\": \"<email>\",\n  \"customer_company_name\": \"<string>\",\n  \"customer_contact_no\": {\n    \"mobile\": \"<string>\",\n    \"home\": \"<string>\",\n    \"work\": \"<string>\"\n  },\n  \"customer_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_billing_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ],\n  \"has_sla\": \"<boolean>\",\n  \"accounts\": {\n    \"ltv\": \"<integer>\",\n    \"receivables\": \"<integer>\",\n    \"credits\": \"<integer>\"\n  },\n  \"is_active\": \"<boolean>\",\n  \"is_portal_enabled\": \"<boolean>\",\n  \"has_card_on_file\": \"<boolean>\",\n  \"tax\": {\n    \"tax_exempt\": \"<boolean>\"\n  },\n  \"created_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "527179a1-a791-4313-91de-54511e10375b",
+              "name": "Customer updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customer_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_uid\": \"<uuid>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"customer_email\": \"<email>\",\n  \"customer_company_name\": \"<string>\",\n  \"customer_contact_no\": {\n    \"mobile\": \"<string>\",\n    \"home\": \"<string>\",\n    \"work\": \"<string>\"\n  },\n  \"customer_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_billing_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ],\n  \"has_sla\": \"<boolean>\",\n  \"accounts\": {\n    \"ltv\": \"<integer>\",\n    \"receivables\": \"<integer>\",\n    \"credits\": \"<integer>\"\n  },\n  \"is_active\": \"<boolean>\",\n  \"is_portal_enabled\": \"<boolean>\",\n  \"has_card_on_file\": \"<boolean>\",\n  \"tax\": {\n    \"tax_exempt\": \"<boolean>\"\n  },\n  \"created_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2763782-6f30-45f1-a7b8-68a0474751e3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customer_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_uid\": \"<uuid>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"customer_email\": \"<email>\",\n  \"customer_company_name\": \"<string>\",\n  \"customer_contact_no\": {\n    \"mobile\": \"<string>\",\n    \"home\": \"<string>\",\n    \"work\": \"<string>\"\n  },\n  \"customer_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customer_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"customer_billing_address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"geo_coordinates\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    }\n  },\n  \"custom_fields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"module_name\": \"<string>\"\n    }\n  ],\n  \"has_sla\": \"<boolean>\",\n  \"accounts\": {\n    \"ltv\": \"<integer>\",\n    \"receivables\": \"<integer>\",\n    \"credits\": \"<integer>\"\n  },\n  \"is_active\": \"<boolean>\",\n  \"is_portal_enabled\": \"<boolean>\",\n  \"has_card_on_file\": \"<boolean>\",\n  \"tax\": {\n    \"tax_exempt\": \"<boolean>\"\n  },\n  \"created_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63d43c9b-8930-4398-a46e-600225100d1c",
+          "name": "Delete Customer",
+          "request": {
+            "name": "Delete Customer",
+            "description": {
+              "content": "Delete a customer record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customer_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customer_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fe292c4-5d84-49c2-bf48-cab7e81ba1c1",
+              "name": "Customer deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customer_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4744f563-a6f3-49aa-b112-6ffad74856da",
+              "name": "Customer not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customer_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "745ba04a-2544-4360-80a6-1336dbcf5410",
+          "name": "Get Customer Summary",
+          "request": {
+            "name": "Get Customer Summary",
+            "description": {
+              "content": "Retrieve a financial and activity summary for a specific customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customer_uid",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customer_uid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Data-center region identifier returned by the config endpoint",
+                  "type": "any",
+                  "value": "{{dc_region}}",
+                  "key": "dc_region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08277847-4177-479b-b2a7-ae8853a98696",
+              "name": "Customer summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customer_uid",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer_uid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Data-center region identifier returned by the config endpoint",
+                      "type": "any",
+                      "value": "{{dc_region}}",
+                      "key": "dc_region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Data-center region identifier returned by the config endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us1",
+      "key": "dc_region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{dc_region}}.zuperpro.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a663826d-7d55-4fe3-8a1c-5a68a2e91d51",
+    "name": "Zuper REST Assets Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuper REST Assets Customers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/customers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (max 1000)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.keyword",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.zipcode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.customer_tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.is_active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.is_deleted",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.is_portal_enabled",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.from_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.to_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.updated_at_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.updated_at_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.customer_uid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.customer_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.customer_organization",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.has_org",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.do_not_service",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.has_card_on_file",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.account_manager",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter.created_by",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of customers with filtering and sorting options."
+        },
+        {
+          "info": {
+            "name": "Create a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dc_region}.zuperpro.com/api/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new customer record."
+        },
+        {
+          "info": {
+            "name": "Get Customer Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/customers/:customer_uid",
+            "params": [
+              {
+                "name": "customer_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific customer."
+        },
+        {
+          "info": {
+            "name": "Update Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dc_region}.zuperpro.com/api/customers/:customer_uid",
+            "params": [
+              {
+                "name": "customer_uid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing customer record."
+        },
+        {
+          "info": {
+            "name": "Delete Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dc_region}.zuperpro.com/api/customers/:customer_uid",
+            "params": [
+              {
+                "name": "customer_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a customer record."
+        },
+        {
+          "info": {
+            "name": "Get Customer Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/customers/:customer_uid/summary",
+            "params": [
+              {
+                "name": "customer_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a financial and activity summary for a specific customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

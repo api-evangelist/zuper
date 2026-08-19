@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuper REST Assets Invoices API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/invoice",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (max 1000)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of invoices."
+        },
+        {
+          "info": {
+            "name": "Create an Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dc_region}.zuperpro.com/api/invoice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new invoice record."
+        },
+        {
+          "info": {
+            "name": "Get Invoice Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dc_region}.zuperpro.com/api/invoice/:invoice_uid",
+            "params": [
+              {
+                "name": "invoice_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific invoice."
+        },
+        {
+          "info": {
+            "name": "Update an Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dc_region}.zuperpro.com/api/invoice/:invoice_uid",
+            "params": [
+              {
+                "name": "invoice_uid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing invoice record."
+        },
+        {
+          "info": {
+            "name": "Delete an Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dc_region}.zuperpro.com/api/invoice/:invoice_uid",
+            "params": [
+              {
+                "name": "invoice_uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an invoice record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
