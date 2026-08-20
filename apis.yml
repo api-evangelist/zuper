@@ -41,6 +41,17 @@ tags:
   - Work Orders
   - Customer Management
   - Inventory
+  - Project
+tags_raw:
+  - Field Service Management
+  - Scheduling
+  - Dispatching
+  - Invoicing
+  - Timesheets
+  - Asset Management
+  - Work Orders
+  - Customer Management
+  - Inventory
   - Projects
 apis:
 - aid: zuper:zuper-assets-api
@@ -130,6 +141,8 @@ apis:
   humanURL: https://developers.zuper.co/
   baseURL: https://accounts.zuperpro.com/api
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -150,6 +163,8 @@ apis:
   humanURL: https://developers.zuper.co/
   baseURL: https://accounts.zuperpro.com/api
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -170,6 +185,8 @@ apis:
   humanURL: https://developers.zuper.co/
   baseURL: https://accounts.zuperpro.com/api
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -230,6 +247,8 @@ apis:
   humanURL: https://developers.zuper.co/
   baseURL: https://accounts.zuperpro.com/api
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -270,6 +289,8 @@ apis:
   humanURL: https://developers.zuper.co/
   baseURL: https://accounts.zuperpro.com/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -310,6 +331,8 @@ apis:
   humanURL: https://developers.zuper.co/
   baseURL: https://accounts.zuperpro.com/api
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
