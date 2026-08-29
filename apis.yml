@@ -13,6 +13,18 @@ description: >-
   server-side SDK via npm (zuper-sdk) and a Model Context Protocol (MCP) server
   for AI agent integration.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
