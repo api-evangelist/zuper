@@ -3,11 +3,14 @@
   "feeds": [
     {
       "source": "https://www.linkedin.com/company/zuperco/",
-      "error": "HTTPError"
+      "feed_url": "https://www.linkedin.com/company/zuperco/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
   "post_count": 25,
-  "fetched": "2026-09-06T19:17:18Z",
+  "fetched": "2026-09-13T13:00:00Z",
   "agent_pulled": "2026-06-27",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
