@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zuper REST Assets Customers API
+  title: Zuper REST Customers API
   description: The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.
   version: 1.0.0
   contact:
@@ -297,6 +297,17 @@ paths:
                 type: object
 components:
   schemas:
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
     AddressObject:
       type: object
       properties:
@@ -317,22 +328,16 @@ components:
               type: number
             longitude:
               type: number
-    ContactNo:
+    CustomField:
       type: object
       properties:
-        mobile:
+        label:
           type: string
-        home:
+        value:
           type: string
-        work:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
         type:
           type: string
-          example: error
-        message:
+        module_name:
           type: string
     Customer:
       type: object
@@ -388,29 +393,33 @@ components:
         created_at:
           type: string
           format: date-time
-    PaginatedResponse:
+    ContactNo:
+      type: object
+      properties:
+        mobile:
+          type: string
+        home:
+          type: string
+        work:
+          type: string
+    ErrorResponse:
       type: object
       properties:
         type:
           type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
-    CustomField:
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-        type:
-          type: string
-        module_name:
+          example: error
+        message:
           type: string
   parameters:
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
     CountParam:
       name: count
       in: query
@@ -426,15 +435,6 @@ components:
       schema:
         type: integer
         default: 1
-    SortParam:
-      name: sort
-      in: query
-      schema:
-        type: string
-        enum:
-        - DESC
-        - ASC
-        default: DESC
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
