@@ -253,26 +253,6 @@ components:
           type: integer
         total_pages:
           type: integer
-    AddressObject:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        zip_code:
-          type: string
-        geo_coordinates:
-          type: object
-          properties:
-            latitude:
-              type: number
-            longitude:
-              type: number
     Asset:
       type: object
       properties:
@@ -313,6 +293,26 @@ components:
           type: string
         asset_location:
           $ref: '#/components/schemas/AddressObject'
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
   parameters:
     SortParam:
       name: sort
@@ -323,6 +323,13 @@ components:
         - DESC
         - ASC
         default: DESC
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
     CountParam:
       name: count
       in: query
@@ -331,13 +338,6 @@ components:
         type: integer
         default: 10
         maximum: 1000
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -297,48 +297,6 @@ paths:
                 type: object
 components:
   schemas:
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
-    AddressObject:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        zip_code:
-          type: string
-        geo_coordinates:
-          type: object
-          properties:
-            latitude:
-              type: number
-            longitude:
-              type: number
-    CustomField:
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-        type:
-          type: string
-        module_name:
-          type: string
     Customer:
       type: object
       properties:
@@ -393,6 +351,56 @@ components:
         created_at:
           type: string
           format: date-time
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: error
+        message:
+          type: string
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+    CustomField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        module_name:
+          type: string
     ContactNo:
       type: object
       properties:
@@ -401,14 +409,6 @@ components:
         home:
           type: string
         work:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        type:
-          type: string
-          example: error
-        message:
           type: string
   parameters:
     SortParam:
@@ -420,6 +420,13 @@ components:
         - DESC
         - ASC
         default: DESC
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
     CountParam:
       name: count
       in: query
@@ -428,13 +435,6 @@ components:
         type: integer
         default: 10
         maximum: 1000
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

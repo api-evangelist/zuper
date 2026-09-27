@@ -119,6 +119,13 @@ paths:
           description: Team deleted successfully
 components:
   parameters:
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
     CountParam:
       name: count
       in: query
@@ -127,13 +134,6 @@ components:
         type: integer
         default: 10
         maximum: 1000
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
   schemas:
     PaginatedResponse:
       type: object

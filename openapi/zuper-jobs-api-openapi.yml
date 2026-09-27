@@ -370,6 +370,14 @@ components:
           type: integer
         total_pages:
           type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: error
+        message:
+          type: string
     CustomField:
       type: object
       properties:
@@ -441,14 +449,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomField'
-    ErrorResponse:
-      type: object
-      properties:
-        type:
-          type: string
-          example: error
-        message:
-          type: string
   parameters:
     SortParam:
       name: sort

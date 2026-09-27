@@ -208,37 +208,6 @@ paths:
           description: Invoice not found
 components:
   schemas:
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
-    AddressObject:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        zip_code:
-          type: string
-        geo_coordinates:
-          type: object
-          properties:
-            latitude:
-              type: number
-            longitude:
-              type: number
     Invoice:
       type: object
       properties:
@@ -290,6 +259,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomField'
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
     CustomField:
       type: object
       properties:
