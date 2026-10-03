@@ -359,36 +359,6 @@ paths:
           description: Job not found
 components:
   schemas:
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        type:
-          type: string
-          example: error
-        message:
-          type: string
-    CustomField:
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-        type:
-          type: string
-        module_name:
-          type: string
     Job:
       type: object
       properties:
@@ -449,6 +419,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomField'
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: error
+        message:
+          type: string
+    CustomField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        module_name:
+          type: string
   parameters:
     SortParam:
       name: sort
@@ -459,6 +459,13 @@ components:
         - DESC
         - ASC
         default: DESC
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
     CountParam:
       name: count
       in: query
@@ -467,13 +474,6 @@ components:
         type: integer
         default: 10
         maximum: 1000
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

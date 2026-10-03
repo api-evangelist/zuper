@@ -207,7 +207,74 @@ paths:
         '404':
           description: Invoice not found
 components:
+  parameters:
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
   schemas:
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+    AddressObject:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip_code:
+          type: string
+        geo_coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+    CustomField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        module_name:
+          type: string
     Invoice:
       type: object
       properties:
@@ -259,73 +326,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomField'
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
-    AddressObject:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        zip_code:
-          type: string
-        geo_coordinates:
-          type: object
-          properties:
-            latitude:
-              type: number
-            longitude:
-              type: number
-    CustomField:
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-        type:
-          type: string
-        module_name:
-          type: string
-  parameters:
-    SortParam:
-      name: sort
-      in: query
-      schema:
-        type: string
-        enum:
-        - DESC
-        - ASC
-        default: DESC
-    CountParam:
-      name: count
-      in: query
-      description: Number of records per page (max 1000)
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

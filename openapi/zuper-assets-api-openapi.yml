@@ -242,17 +242,6 @@ paths:
           description: Asset not found
 components:
   schemas:
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
     Asset:
       type: object
       properties:
@@ -293,6 +282,17 @@ components:
           type: string
         asset_location:
           $ref: '#/components/schemas/AddressObject'
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
     AddressObject:
       type: object
       properties:
