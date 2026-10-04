@@ -358,7 +358,40 @@ paths:
         '404':
           description: Job not found
 components:
+  parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: error
+        message:
+          type: string
     Job:
       type: object
       properties:
@@ -419,25 +452,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomField'
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        type:
-          type: string
-          example: error
-        message:
-          type: string
     CustomField:
       type: object
       properties:
@@ -449,31 +463,17 @@ components:
           type: string
         module_name:
           type: string
-  parameters:
-    SortParam:
-      name: sort
-      in: query
-      schema:
-        type: string
-        enum:
-        - DESC
-        - ASC
-        default: DESC
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
-    CountParam:
-      name: count
-      in: query
-      description: Number of records per page (max 1000)
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

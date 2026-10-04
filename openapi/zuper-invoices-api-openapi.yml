@@ -208,6 +208,14 @@ paths:
           description: Invoice not found
 components:
   parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
     SortParam:
       name: sort
       in: query
@@ -224,15 +232,18 @@ components:
       schema:
         type: integer
         default: 1
-    CountParam:
-      name: count
-      in: query
-      description: Number of records per page (max 1000)
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
   schemas:
+    CustomField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        module_name:
+          type: string
     PaginatedResponse:
       type: object
       properties:
@@ -264,17 +275,6 @@ components:
               type: number
             longitude:
               type: number
-    CustomField:
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-        type:
-          type: string
-        module_name:
-          type: string
     Invoice:
       type: object
       properties:

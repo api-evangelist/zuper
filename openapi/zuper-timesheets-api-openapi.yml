@@ -97,6 +97,18 @@ paths:
         '200':
           description: Timesheet deleted successfully
 components:
+  schemas:
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
   parameters:
     PageParam:
       name: page
@@ -113,18 +125,6 @@ components:
         type: integer
         default: 10
         maximum: 1000
-  schemas:
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

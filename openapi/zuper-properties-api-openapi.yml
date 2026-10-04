@@ -122,23 +122,18 @@ paths:
         '200':
           description: Property deleted successfully
 components:
-  parameters:
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
-    CountParam:
-      name: count
-      in: query
-      description: Number of records per page (max 1000)
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
   schemas:
+    PaginatedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        total_records:
+          type: integer
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
     AddressObject:
       type: object
       properties:
@@ -159,17 +154,22 @@ components:
               type: number
             longitude:
               type: number
-    PaginatedResponse:
-      type: object
-      properties:
-        type:
-          type: string
-        total_records:
-          type: integer
-        current_page:
-          type: integer
-        total_pages:
-          type: integer
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

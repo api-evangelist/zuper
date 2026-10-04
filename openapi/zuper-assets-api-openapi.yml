@@ -241,6 +241,31 @@ paths:
         '404':
           description: Asset not found
 components:
+  parameters:
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        default: DESC
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      schema:
+        type: integer
+        default: 1
   schemas:
     Asset:
       type: object
@@ -313,31 +338,6 @@ components:
               type: number
             longitude:
               type: number
-  parameters:
-    SortParam:
-      name: sort
-      in: query
-      schema:
-        type: string
-        enum:
-        - DESC
-        - ASC
-        default: DESC
-    PageParam:
-      name: page
-      in: query
-      description: Page number (1-based)
-      schema:
-        type: integer
-        default: 1
-    CountParam:
-      name: count
-      in: query
-      description: Number of records per page (max 1000)
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
