@@ -360,6 +360,9 @@ apis:
   - type: Authentication
     url: https://developers.zuper.co/reference/generate-api-key
 common:
+  - type: CapabilityMap
+    url: capabilities/zuper-capability-edges.yml
+    name: Zuper Business Capability Map
   - type: AgenticAccess
     url: agentic-access/zuper-agentic-access.yml
   - type: TrustCenter
