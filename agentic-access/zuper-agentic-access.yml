@@ -1,23 +1,37 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/zuper-rest-api-openapi.yml
+source: openapi/zuper-assets-api-openapi.yml, openapi/zuper-authentication-api-openapi.yml,
+  openapi/zuper-customers-api-openapi.yml, openapi/zuper-invoices-api-openapi.yml, openapi/zuper-jobs-api-openapi.yml,
+  openapi/zuper-organizations-api-openapi.yml, openapi/zuper-projects-api-openapi.yml, openapi/zuper-properties-api-openapi.yml,
+  openapi/zuper-purchase-orders-api-openapi.yml, openapi/zuper-teams-api-openapi.yml, openapi/zuper-timesheets-api-openapi.yml,
+  openapi/zuper-users-api-openapi.yml, openapi/zuper-vendors-api-openapi.yml, openapi/zuper-webhooks-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 69
   by_action_class:
-    acting: 43
-    connected: 26
+    connected: 27
+    acting: 42
   by_consequence:
-    write: 35
-    read: 26
+    read: 27
+    write: 34
     physical: 8
   human_in_the_loop_required: 0
 operations:
-- path: /config
+- path: /assets
+  method: get
+  operationId: getAllAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /assets
   method: post
-  operationId: getConfig
+  operationId: createAsset
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -31,6 +45,58 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /assets/{asset_uid}
+  method: get
+  operationId: getAssetDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /assets/{asset_uid}
+  method: put
+  operationId: updateAsset
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /assets/{asset_uid}
+  method: delete
+  operationId: deleteAsset
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /config
+  method: post
+  operationId: getConfig
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /customers
   method: get
   operationId: getAllCustomers
@@ -109,142 +175,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /jobs
-  method: get
-  operationId: getJobs
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /jobs
-  method: post
-  operationId: createJob
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /jobs/{job_uid}
-  method: get
-  operationId: getJobDetails
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /jobs/{job_uid}
-  method: put
-  operationId: updateJob
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /jobs/{job_uid}
-  method: delete
-  operationId: deleteJob
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /assets
-  method: get
-  operationId: getAllAssets
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /assets
-  method: post
-  operationId: createAsset
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /assets/{asset_uid}
-  method: get
-  operationId: getAssetDetails
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /assets/{asset_uid}
-  method: put
-  operationId: updateAsset
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /assets/{asset_uid}
-  method: delete
-  operationId: deleteAsset
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /invoice
   method: get
   operationId: getAllInvoices
@@ -319,9 +249,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /purchase_orders
+- path: /jobs
   method: get
-  operationId: getPurchaseOrders
+  operationId: getJobs
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -329,27 +259,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /purchase_orders
+- path: /jobs
   method: post
-  operationId: createPurchaseOrder
+  operationId: createJob
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /purchase_orders/{purchase_order_uid}
+- path: /jobs/{job_uid}
   method: get
-  operationId: getPurchaseOrderDetails
+  operationId: getJobDetails
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -357,207 +285,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /purchase_orders/{purchase_order_uid}
+- path: /jobs/{job_uid}
   method: put
-  operationId: updatePurchaseOrder
+  operationId: updateJob
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /purchase_orders/{purchase_order_uid}
+- path: /jobs/{job_uid}
   method: delete
-  operationId: deletePurchaseOrder
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /purchase_orders/{purchase_order_uid}/send
-  method: post
-  operationId: sendPurchaseOrder
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /purchase_orders/{purchase_order_uid}/status
-  method: put
-  operationId: updatePurchaseOrderStatus
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /timesheets
-  method: get
-  operationId: getTimesheets
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /timesheets
-  method: post
-  operationId: createTimesheet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /timesheets/{timesheet_uid}
-  method: put
-  operationId: updateTimesheet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /timesheets/{timesheet_uid}
-  method: delete
-  operationId: deleteTimesheet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /webhooks
-  method: get
-  operationId: getWebhooks
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /webhooks
-  method: post
-  operationId: createWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /webhooks/{webhook_uid}
-  method: get
-  operationId: getWebhookDetails
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /webhooks/{webhook_uid}
-  method: put
-  operationId: updateWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /webhooks/{webhook_uid}
-  method: delete
-  operationId: deleteWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /webhooks/{webhook_uid}/activate
-  method: put
-  operationId: activateWebhook
+  operationId: deleteJob
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -707,9 +453,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /vendors
+- path: /properties
   method: get
-  operationId: getAllVendors
+  operationId: getAllProperties
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -717,9 +463,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /vendors
+- path: /properties
   method: post
-  operationId: createVendor
+  operationId: createProperty
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -733,9 +479,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /vendors/{vendor_uid}
+- path: /properties/{property_uid}
   method: get
-  operationId: getVendorDetails
+  operationId: getPropertyDetails
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -743,9 +489,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /vendors/{vendor_uid}
+- path: /properties/{property_uid}
   method: put
-  operationId: updateVendor
+  operationId: updatePropertyDetails
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -759,9 +505,245 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /vendors/{vendor_uid}
+- path: /properties/{property_uid}
   method: delete
-  operationId: deleteVendor
+  operationId: deleteProperty
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /purchase_orders
+  method: get
+  operationId: getPurchaseOrders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /purchase_orders
+  method: post
+  operationId: createPurchaseOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /purchase_orders/{purchase_order_uid}
+  method: get
+  operationId: getPurchaseOrderDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /purchase_orders/{purchase_order_uid}
+  method: put
+  operationId: updatePurchaseOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /purchase_orders/{purchase_order_uid}
+  method: delete
+  operationId: deletePurchaseOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /purchase_orders/{purchase_order_uid}/send
+  method: post
+  operationId: sendPurchaseOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /purchase_orders/{purchase_order_uid}/status
+  method: put
+  operationId: updatePurchaseOrderStatus
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /teams
+  method: get
+  operationId: getAllTeams
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /teams
+  method: post
+  operationId: createTeam
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /teams/{team_uid}
+  method: get
+  operationId: getTeamDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /teams/{team_uid}
+  method: put
+  operationId: updateTeamDetails
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /teams/{team_uid}
+  method: delete
+  operationId: deleteTeam
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /timesheets
+  method: get
+  operationId: getTimesheets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timesheets
+  method: post
+  operationId: createTimesheet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /timesheets/{timesheet_uid}
+  method: put
+  operationId: updateTimesheet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /timesheets/{timesheet_uid}
+  method: delete
+  operationId: deleteTimesheet
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -843,9 +825,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /teams
+- path: /vendors
   method: get
-  operationId: getAllTeams
+  operationId: getAllVendors
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -853,9 +835,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /teams
+- path: /vendors
   method: post
-  operationId: createTeam
+  operationId: createVendor
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -869,9 +851,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /teams/{team_uid}
+- path: /vendors/{vendor_uid}
   method: get
-  operationId: getTeamDetails
+  operationId: getVendorDetails
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -879,9 +861,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /teams/{team_uid}
+- path: /vendors/{vendor_uid}
   method: put
-  operationId: updateTeamDetails
+  operationId: updateVendor
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -895,9 +877,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /teams/{team_uid}
+- path: /vendors/{vendor_uid}
   method: delete
-  operationId: deleteTeam
+  operationId: deleteVendor
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -911,9 +893,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /properties
+- path: /webhooks
   method: get
-  operationId: getAllProperties
+  operationId: getWebhooks
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -921,9 +903,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /properties
+- path: /webhooks
   method: post
-  operationId: createProperty
+  operationId: createWebhook
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -937,9 +919,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /properties/{property_uid}
+- path: /webhooks/{webhook_uid}
   method: get
-  operationId: getPropertyDetails
+  operationId: getWebhookDetails
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -947,9 +929,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /properties/{property_uid}
+- path: /webhooks/{webhook_uid}
   method: put
-  operationId: updatePropertyDetails
+  operationId: updateWebhook
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -963,9 +945,25 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /properties/{property_uid}
+- path: /webhooks/{webhook_uid}
   method: delete
-  operationId: deleteProperty
+  operationId: deleteWebhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /webhooks/{webhook_uid}/activate
+  method: put
+  operationId: activateWebhook
   x-agentic-access:
     action-class: acting
     consequence: write
