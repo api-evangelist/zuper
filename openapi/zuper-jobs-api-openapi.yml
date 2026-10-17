@@ -359,14 +359,6 @@ paths:
           description: Job not found
 components:
   parameters:
-    CountParam:
-      name: count
-      in: query
-      description: Number of records per page (max 1000)
-      schema:
-        type: integer
-        default: 10
-        maximum: 1000
     SortParam:
       name: sort
       in: query
@@ -383,14 +375,25 @@ components:
       schema:
         type: integer
         default: 1
+    CountParam:
+      name: count
+      in: query
+      description: Number of records per page (max 1000)
+      schema:
+        type: integer
+        default: 10
+        maximum: 1000
   schemas:
-    ErrorResponse:
+    CustomField:
       type: object
       properties:
+        label:
+          type: string
+        value:
+          type: string
         type:
           type: string
-          example: error
-        message:
+        module_name:
           type: string
     Job:
       type: object
@@ -452,17 +455,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomField'
-    CustomField:
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-        type:
-          type: string
-        module_name:
-          type: string
     PaginatedResponse:
       type: object
       properties:
@@ -474,6 +466,14 @@ components:
           type: integer
         total_pages:
           type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: error
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
