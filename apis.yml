@@ -44,7 +44,7 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'
 tags:
-  - Field Service Management
+  - Field Service
   - Scheduling
   - Dispatching
   - Invoicing
@@ -360,6 +360,8 @@ apis:
   - type: Authentication
     url: https://developers.zuper.co/reference/generate-api-key
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/zuper/overview
   - type: CapabilityMap
     url: capabilities/zuper-capability-edges.yml
     name: Zuper Business Capability Map
