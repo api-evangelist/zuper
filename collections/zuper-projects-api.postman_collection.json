@@ -1,622 +1,507 @@
 {
+  "info": {
+    "_postman_id": "7920da2e-7841-46fa-b1ac-452d61432503",
+    "name": "Zuper REST Projects API",
+    "description": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:14:58.000Z",
+    "updatedAt": "2026-10-22T01:14:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7920da2e-7841-46fa-b1ac-452d61432503"
+  },
   "item": [
     {
-      "id": "261bd6c1-f702-421f-b69b-7bc759355c40",
-      "name": "Projects",
-      "description": {
-        "content": "Multi-job project management with phases, milestones, and dependencies",
-        "type": "text/plain"
-      },
+      "name": "projects",
       "item": [
         {
-          "id": "0c4fc6f0-2a8a-4eff-818e-653d999c4a60",
-          "name": "Get All Projects",
-          "request": {
-            "name": "Get All Projects",
-            "description": {
-              "content": "Retrieve a paginated list of projects.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{project_uid}",
+          "item": [
+            {
+              "name": "Get Project Details",
+              "id": "2acbfed5-0c0d-4f1b-9aa1-03ac372b826f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:project_uid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":project_uid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "43d9435a-bc7a-496a-a262-780f3a48e01a",
+                      "key": "project_uid",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific project."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1",
-                  "description": "Page number (1-based)"
+                  "id": "05efbff0-ecae-4c94-88a2-7f7de35cc638",
+                  "name": "Project details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "project_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:14:58.000Z",
+                  "updatedAt": "2026-10-22T01:14:58.000Z",
+                  "uid": "35240-05efbff0-ecae-4c94-88a2-7f7de35cc638"
                 },
                 {
-                  "disabled": false,
-                  "key": "count",
-                  "value": "10",
-                  "description": "Number of records per page (max 1000)"
+                  "id": "9d0fa4eb-7e9d-41a4-a64e-47051281fcdf",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "project_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:14:58.000Z",
+                  "updatedAt": "2026-10-22T01:14:58.000Z",
+                  "uid": "35240-9d0fa4eb-7e9d-41a4-a64e-47051281fcdf"
                 }
               ],
-              "variable": [
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
+              "createdAt": "2026-10-22T01:14:58.000Z",
+              "updatedAt": "2026-10-22T01:14:58.000Z",
+              "uid": "35240-2acbfed5-0c0d-4f1b-9aa1-03ac372b826f"
             },
+            {
+              "name": "Update a Project",
+              "id": "d70703b7-1abe-40f5-aaf6-d98d661b72bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:project_uid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":project_uid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bfb231fb-fea7-4c70-ad86-187c43eab5b7",
+                      "key": "project_uid",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update an existing project."
+              },
+              "response": [
+                {
+                  "id": "25b4b1f9-caa9-4061-ae32-4cb55facef84",
+                  "name": "Project updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "project_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:14:58.000Z",
+                  "updatedAt": "2026-10-22T01:14:58.000Z",
+                  "uid": "35240-25b4b1f9-caa9-4061-ae32-4cb55facef84"
+                }
+              ],
+              "createdAt": "2026-10-22T01:14:58.000Z",
+              "updatedAt": "2026-10-22T01:14:58.000Z",
+              "uid": "35240-d70703b7-1abe-40f5-aaf6-d98d661b72bb"
+            },
+            {
+              "name": "Delete Project",
+              "id": "e13ff0f8-e974-4cef-840d-3bb667ba1147",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:project_uid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":project_uid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d3641d4d-645d-4fa9-b1c5-cecf73ac647f",
+                      "key": "project_uid",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Delete a project record."
+              },
+              "response": [
+                {
+                  "id": "a888ae37-6bb2-4db5-aabe-06e853f2d0bd",
+                  "name": "Project deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "project_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:14:58.000Z",
+                  "updatedAt": "2026-10-22T01:14:58.000Z",
+                  "uid": "35240-a888ae37-6bb2-4db5-aabe-06e853f2d0bd"
+                }
+              ],
+              "createdAt": "2026-10-22T01:14:58.000Z",
+              "updatedAt": "2026-10-22T01:14:58.000Z",
+              "uid": "35240-e13ff0f8-e974-4cef-840d-3bb667ba1147"
+            }
+          ],
+          "id": "16b2c1ed-1799-4b9d-afd1-089da4871774",
+          "createdAt": "2026-10-22T01:14:58.000Z",
+          "updatedAt": "2026-10-22T01:14:58.000Z",
+          "uid": "35240-16b2c1ed-1799-4b9d-afd1-089da4871774"
+        },
+        {
+          "name": "Get All Projects",
+          "id": "b77f13ce-029c-46e1-b7b6-b8f347e7f7c5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/projects?page=1&count=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ],
+              "query": [
+                {
+                  "description": "Page number (1-based)",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of records per page (max 1000)",
+                  "key": "count",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Retrieve a paginated list of projects."
           },
           "response": [
             {
-              "id": "f32daefc-7bb9-451c-a7fc-60f36ed3523c",
+              "id": "d9d2f672-2b1c-4fed-8ff8-696701c10b28",
               "name": "Paginated list of projects",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "projects"
-                  ],
+                  "raw": "{{baseUrl}}/projects?page=1&count=10",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "projects"
+                  ],
                   "query": [
                     {
+                      "description": "Page number (1-based)",
                       "key": "page",
                       "value": "1"
                     },
                     {
+                      "description": "Number of records per page (max 1000)",
                       "key": "count",
                       "value": "10"
                     }
-                  ],
-                  "variable": [
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"total_records\": 8385,\n  \"current_page\": 1210,\n  \"total_pages\": 7185\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"total_records\": \"<integer>\",\n  \"current_page\": \"<integer>\",\n  \"total_pages\": \"<integer>\"\n}",
+              "createdAt": "2026-10-22T01:14:58.000Z",
+              "updatedAt": "2026-10-22T01:14:58.000Z",
+              "uid": "35240-d9d2f672-2b1c-4fed-8ff8-696701c10b28"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:14:58.000Z",
+          "updatedAt": "2026-10-22T01:14:58.000Z",
+          "uid": "35240-b77f13ce-029c-46e1-b7b6-b8f347e7f7c5"
         },
         {
-          "id": "14a56525-be49-44a4-97d7-a0ba57befbee",
           "name": "Create Project",
+          "id": "1f1f2491-2c5c-462e-bd8a-02ee33730cb0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create Project",
-            "description": {
-              "content": "Create a new project.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"project_name\": \"<string>\",\n  \"project_description\": \"<string>\",\n  \"customer\": \"<string>\",\n  \"start_date\": \"<dateTime>\",\n  \"end_date\": \"<dateTime>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Create a new project."
           },
           "response": [
             {
-              "id": "28473141-06c2-4604-9077-1b4c7dfed810",
+              "id": "05163414-2d6d-41aa-ac1c-c8d63e875334",
               "name": "Project created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "x-api-key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"project_name\": \"<string>\",\n  \"project_description\": \"<string>\",\n  \"customer\": \"<string>\",\n  \"start_date\": \"<dateTime>\",\n  \"end_date\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:14:58.000Z",
+              "updatedAt": "2026-10-22T01:14:58.000Z",
+              "uid": "35240-05163414-2d6d-41aa-ac1c-c8d63e875334"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a1922752-9529-4c35-9dcf-3adc5b587952",
-          "name": "Get Project Details",
-          "request": {
-            "name": "Get Project Details",
-            "description": {
-              "content": "Retrieve details of a specific project.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":project_uid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "project_uid",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9f92c398-9eb0-4cd8-a9e0-e0248fc64e88",
-              "name": "Project details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":project_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "project_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "f7031941-4fbd-4ed8-89b2-cab18184a020",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":project_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "project_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "06baad1b-43b1-4981-8994-cd8976045560",
-          "name": "Update a Project",
-          "request": {
-            "name": "Update a Project",
-            "description": {
-              "content": "Update an existing project.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":project_uid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "project_uid",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "20484bd0-0b80-4181-bf0a-ec7b419f4fe7",
-              "name": "Project updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":project_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "project_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<object>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "014c5765-19d7-4659-b924-dc85610e3b1a",
-          "name": "Delete Project",
-          "request": {
-            "name": "Delete Project",
-            "description": {
-              "content": "Delete a project record.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":project_uid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "project_uid",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3e693245-a058-488f-b899-e4c1b4a613d4",
-              "name": "Project deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":project_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "project_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:14:58.000Z",
+          "updatedAt": "2026-10-22T01:14:58.000Z",
+          "uid": "35240-1f1f2491-2c5c-462e-bd8a-02ee33730cb0"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Data-center region identifier returned by the config endpoint",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "us1",
-      "key": "dc_region"
-    },
-    {
-      "type": "string",
-      "value": "https://{{dc_region}}.zuperpro.com/api",
-      "key": "baseUrl"
+      "id": "cadefa22-742f-4c71-af80-422a6c1083c1",
+      "createdAt": "2026-10-22T01:14:58.000Z",
+      "updatedAt": "2026-10-22T01:14:58.000Z",
+      "uid": "35240-cadefa22-742f-4c71-af80-422a6c1083c1"
     }
   ],
   "auth": {
@@ -624,25 +509,29 @@
     "apikey": [
       {
         "key": "key",
-        "value": "x-api-key"
+        "value": "x-api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f90c641f-57db-48d5-abf9-23b9d96e3d24",
-    "name": "Zuper REST Assets Projects API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "dc_region",
+      "value": "us1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{dc_region}}.zuperpro.com/api"
     }
-  }
+  ]
 }

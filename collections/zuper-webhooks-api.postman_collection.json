@@ -1,777 +1,644 @@
 {
+  "info": {
+    "_postman_id": "ea7444f4-9638-42ac-a332-6005864f66fa",
+    "name": "Zuper REST Webhooks API",
+    "description": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:15:41.000Z",
+    "updatedAt": "2026-10-22T01:15:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ea7444f4-9638-42ac-a332-6005864f66fa"
+  },
   "item": [
     {
-      "id": "cefb6d84-5805-4d72-8443-3e2ac344fdf5",
-      "name": "Webhooks",
-      "description": {
-        "content": "Webhook registration and event subscription management",
-        "type": "text/plain"
-      },
+      "name": "webhooks",
       "item": [
         {
-          "id": "964aeb71-85ab-4c79-840b-cdb58d6f1149",
-          "name": "Get Webhooks",
-          "request": {
-            "name": "Get Webhooks",
-            "description": {
-              "content": "Retrieve all configured webhooks.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+          "name": "{webhook_uid}",
+          "item": [
+            {
+              "name": "activate",
+              "item": [
                 {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
+                  "name": "Activate/Deactivate Webhook",
+                  "id": "b621e768-6150-4288-b070-e8c21a0d0486",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"is_active\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:webhook_uid/activate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":webhook_uid",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6ee5f414-2106-41f4-876d-c097a2e3808b",
+                          "key": "webhook_uid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Toggle the active status of a webhook."
+                  },
+                  "response": [
+                    {
+                      "id": "dfffde40-20ec-4599-ba4e-5a9e4ac5b46a",
+                      "name": "Webhook status updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"is_active\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/:webhook_uid/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            ":webhook_uid",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:15:42.000Z",
+                      "updatedAt": "2026-10-22T01:15:42.000Z",
+                      "uid": "35240-dfffde40-20ec-4599-ba4e-5a9e4ac5b46a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:15:42.000Z",
+                  "updatedAt": "2026-10-22T01:15:42.000Z",
+                  "uid": "35240-b621e768-6150-4288-b070-e8c21a0d0486"
                 }
-              ]
+              ],
+              "id": "27ea3e21-0c71-4a57-a840-d1305e4ce641",
+              "createdAt": "2026-10-22T01:15:42.000Z",
+              "updatedAt": "2026-10-22T01:15:42.000Z",
+              "uid": "35240-27ea3e21-0c71-4a57-a840-d1305e4ce641"
             },
+            {
+              "name": "Get Webhook Details",
+              "id": "f7e88575-a95f-48ae-8f7b-c6024ed12098",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/:webhook_uid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    ":webhook_uid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b225eac8-193e-4cc0-a76b-6500b499c6eb",
+                      "key": "webhook_uid",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific webhook."
+              },
+              "response": [
+                {
+                  "id": "2eca8951-1a1f-4c62-8d04-7b573b49c1f3",
+                  "name": "Webhook details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:webhook_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":webhook_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhook_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:15:42.000Z",
+                  "updatedAt": "2026-10-22T01:15:42.000Z",
+                  "uid": "35240-2eca8951-1a1f-4c62-8d04-7b573b49c1f3"
+                },
+                {
+                  "id": "3b61967e-92fc-431b-8d4c-996871b5a2d5",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:webhook_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":webhook_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhook_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:15:42.000Z",
+                  "updatedAt": "2026-10-22T01:15:42.000Z",
+                  "uid": "35240-3b61967e-92fc-431b-8d4c-996871b5a2d5"
+                }
+              ],
+              "createdAt": "2026-10-22T01:15:42.000Z",
+              "updatedAt": "2026-10-22T01:15:42.000Z",
+              "uid": "35240-f7e88575-a95f-48ae-8f7b-c6024ed12098"
+            },
+            {
+              "name": "Update Webhook",
+              "id": "88095b2f-05e8-4326-8dff-5a72a5c9b508",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/:webhook_uid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    ":webhook_uid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e1f01864-584e-4fd1-b215-ffd17722199e",
+                      "key": "webhook_uid",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update an existing webhook configuration."
+              },
+              "response": [
+                {
+                  "id": "ddfa8cee-82cd-48c0-931e-7ff73c8d0901",
+                  "name": "Webhook updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:webhook_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":webhook_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhook_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:15:42.000Z",
+                  "updatedAt": "2026-10-22T01:15:42.000Z",
+                  "uid": "35240-ddfa8cee-82cd-48c0-931e-7ff73c8d0901"
+                }
+              ],
+              "createdAt": "2026-10-22T01:15:42.000Z",
+              "updatedAt": "2026-10-22T01:15:42.000Z",
+              "uid": "35240-88095b2f-05e8-4326-8dff-5a72a5c9b508"
+            },
+            {
+              "name": "Delete Webhook",
+              "id": "96fbf74a-eb91-4299-8543-cdc7e8d68ce2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/:webhook_uid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    ":webhook_uid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "20d0dc4b-bdd9-4984-a508-823e6be513a8",
+                      "key": "webhook_uid",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Delete a webhook registration."
+              },
+              "response": [
+                {
+                  "id": "28e5de0e-3a2b-4e40-af18-3aca01b8405e",
+                  "name": "Webhook deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:webhook_uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":webhook_uid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhook_uid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:15:42.000Z",
+                  "updatedAt": "2026-10-22T01:15:42.000Z",
+                  "uid": "35240-28e5de0e-3a2b-4e40-af18-3aca01b8405e"
+                }
+              ],
+              "createdAt": "2026-10-22T01:15:42.000Z",
+              "updatedAt": "2026-10-22T01:15:42.000Z",
+              "uid": "35240-96fbf74a-eb91-4299-8543-cdc7e8d68ce2"
+            }
+          ],
+          "id": "1bc639b5-ba8d-4e7e-b9cd-37b6486498c0",
+          "createdAt": "2026-10-22T01:15:42.000Z",
+          "updatedAt": "2026-10-22T01:15:42.000Z",
+          "uid": "35240-1bc639b5-ba8d-4e7e-b9cd-37b6486498c0"
+        },
+        {
+          "name": "Get Webhooks",
+          "id": "911acde2-9c31-4ed1-aa80-5ab44b69c191",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
+            },
+            "description": "Retrieve all configured webhooks."
           },
           "response": [
             {
-              "id": "91b92340-09c5-4672-a45f-6bcc2deea771",
+              "id": "3e1e3a49-ce0d-417f-8457-da58e3c5eb3b",
               "name": "List of webhooks",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-api-key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"webhook_uid\": \"bf87801d-e8c1-9536-7a29-e0cb3fa4d552\",\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"is_active\": true\n    },\n    {\n      \"webhook_uid\": \"5886682c-5f7c-20ed-aca9-0a525cbe6b2d\",\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"is_active\": false\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"webhook_uid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"is_active\": \"<boolean>\"\n    },\n    {\n      \"webhook_uid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"is_active\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:15:42.000Z",
+              "updatedAt": "2026-10-22T01:15:42.000Z",
+              "uid": "35240-3e1e3a49-ce0d-417f-8457-da58e3c5eb3b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:15:42.000Z",
+          "updatedAt": "2026-10-22T01:15:42.000Z",
+          "uid": "35240-911acde2-9c31-4ed1-aa80-5ab44b69c191"
         },
         {
-          "id": "d301b223-474c-4825-8bae-1442d5c10b20",
           "name": "Create a Webhook",
+          "id": "20ff227b-95eb-4666-9921-9645407b4913",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create a Webhook",
-            "description": {
-              "content": "Register a new webhook endpoint.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
+            },
+            "description": "Register a new webhook endpoint."
           },
           "response": [
             {
-              "id": "85d4e09f-aec4-462a-9dd8-0f3f1f484378",
+              "id": "2a6b9feb-f4d9-4541-9c8b-adec1185ffaf",
               "name": "Webhook created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "x-api-key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:15:42.000Z",
+              "updatedAt": "2026-10-22T01:15:42.000Z",
+              "uid": "35240-2a6b9feb-f4d9-4541-9c8b-adec1185ffaf"
             },
             {
-              "id": "f17f7d4f-7a4d-44c2-bae8-30852b3505d1",
+              "id": "dfaf001a-2040-43a5-bd55-43610289edcb",
               "name": "Bad request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "x-api-key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:15:42.000Z",
+              "updatedAt": "2026-10-22T01:15:42.000Z",
+              "uid": "35240-dfaf001a-2040-43a5-bd55-43610289edcb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a833ba17-e60c-4124-90cc-456f78729fb1",
-          "name": "Get Webhook Details",
-          "request": {
-            "name": "Get Webhook Details",
-            "description": {
-              "content": "Retrieve details of a specific webhook.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks",
-                ":webhook_uid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "webhook_uid",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b3ec1582-906b-47b0-9354-a28c58464bc7",
-              "name": "Webhook details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":webhook_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "webhook_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "abf42219-e81e-430a-a77e-216175ace066",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":webhook_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "webhook_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d148bd3e-16e8-4cde-b9d9-6ac038eedbb2",
-          "name": "Update Webhook",
-          "request": {
-            "name": "Update Webhook",
-            "description": {
-              "content": "Update an existing webhook configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks",
-                ":webhook_uid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "webhook_uid",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f796fb93-a38b-494e-ac45-d951a012713e",
-              "name": "Webhook updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":webhook_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "webhook_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<object>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8a492c75-813a-4e29-a473-3091a14a9775",
-          "name": "Delete Webhook",
-          "request": {
-            "name": "Delete Webhook",
-            "description": {
-              "content": "Delete a webhook registration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks",
-                ":webhook_uid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "webhook_uid",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "12b4d70f-6c7e-4eaa-94ed-228b2b7f0162",
-              "name": "Webhook deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":webhook_uid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "webhook_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5f01f407-b1ad-42c0-82f6-90343b21a7bb",
-          "name": "Activate/Deactivate Webhook",
-          "request": {
-            "name": "Activate/Deactivate Webhook",
-            "description": {
-              "content": "Toggle the active status of a webhook.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks",
-                ":webhook_uid",
-                "activate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "webhook_uid",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"is_active\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "71555a9b-49b1-4df2-bef2-d730309b7b92",
-              "name": "Webhook status updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":webhook_uid",
-                    "activate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "webhook_uid",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"is_active\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:15:42.000Z",
+          "updatedAt": "2026-10-22T01:15:42.000Z",
+          "uid": "35240-20ff227b-95eb-4666-9921-9645407b4913"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Data-center region identifier returned by the config endpoint",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "us1",
-      "key": "dc_region"
-    },
-    {
-      "type": "string",
-      "value": "https://{{dc_region}}.zuperpro.com/api",
-      "key": "baseUrl"
+      "id": "bd0ebc62-ffda-4e20-bbc8-bf69a1570bcf",
+      "createdAt": "2026-10-22T01:15:42.000Z",
+      "updatedAt": "2026-10-22T01:15:42.000Z",
+      "uid": "35240-bd0ebc62-ffda-4e20-bbc8-bf69a1570bcf"
     }
   ],
   "auth": {
@@ -779,25 +646,29 @@
     "apikey": [
       {
         "key": "key",
-        "value": "x-api-key"
+        "value": "x-api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3145a767-d9a7-4765-b16f-68d0d2c49b2f",
-    "name": "Zuper REST Assets Webhooks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "dc_region",
+      "value": "us1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{dc_region}}.zuperpro.com/api"
     }
-  }
+  ]
 }

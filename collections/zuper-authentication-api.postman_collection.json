@@ -1,39 +1,26 @@
 {
+  "info": {
+    "_postman_id": "68d50ef8-e53d-40c0-8da7-ba6d3399f33a",
+    "name": "Zuper REST Authentication API",
+    "description": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:14:28.000Z",
+    "updatedAt": "2026-10-22T01:14:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-68d50ef8-e53d-40c0-8da7-ba6d3399f33a"
+  },
   "item": [
     {
-      "id": "b8e66cc7-967a-4d21-af37-743e7456d9df",
-      "name": "Authentication",
-      "description": {
-        "content": "API key generation and base URL discovery",
-        "type": "text/plain"
-      },
+      "name": "config",
       "item": [
         {
-          "id": "a1de617f-af9b-49a8-96b8-77109c02e773",
           "name": "Get Region-Specific Base URL",
+          "id": "da5ed52a-d2c8-4827-ac0a-e35070b27b6f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get Region-Specific Base URL",
-            "description": {
-              "content": "POST your company login name to discover the dc_api_url (region-specific base URL) for all subsequent API calls. Must target https://accounts.zuperpro.com/api.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "config"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "Data-center region identifier returned by the config endpoint",
-                  "type": "any",
-                  "value": "{{dc_region}}",
-                  "key": "dc_region"
-                }
-              ]
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -44,102 +31,94 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"company_login\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "config"
+              ]
+            },
+            "description": "POST your company login name to discover the dc_api_url (region-specific base URL) for all subsequent API calls. Must target https://accounts.zuperpro.com/api."
           },
           "response": [
             {
-              "id": "60df082d-afeb-40bc-bb81-f49167009763",
+              "id": "84175340-2718-4853-b43c-e9510c712fda",
               "name": "Configuration details including dc_api_url",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "config"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Data-center region identifier returned by the config endpoint",
-                      "type": "any",
-                      "value": "{{dc_region}}",
-                      "key": "dc_region"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-api-key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"company_login\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"dc_api_url\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"dc_api_url\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:14:29.000Z",
+              "updatedAt": "2026-10-22T01:14:29.000Z",
+              "uid": "35240-84175340-2718-4853-b43c-e9510c712fda"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:14:29.000Z",
+          "updatedAt": "2026-10-22T01:14:29.000Z",
+          "uid": "35240-da5ed52a-d2c8-4827-ac0a-e35070b27b6f"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Data-center region identifier returned by the config endpoint",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "us1",
-      "key": "dc_region"
-    },
-    {
-      "type": "string",
-      "value": "https://{{dc_region}}.zuperpro.com/api",
-      "key": "baseUrl"
+      "id": "4b3af95d-044c-40b0-9706-0c5050f2eb59",
+      "createdAt": "2026-10-22T01:14:28.000Z",
+      "updatedAt": "2026-10-22T01:14:28.000Z",
+      "uid": "35240-4b3af95d-044c-40b0-9706-0c5050f2eb59"
     }
   ],
   "auth": {
@@ -147,25 +126,29 @@
     "apikey": [
       {
         "key": "key",
-        "value": "x-api-key"
+        "value": "x-api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f5ae3db4-aeba-49ef-8dc2-7e0ad0c2f976",
-    "name": "Zuper REST Assets Authentication API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Zuper REST API provides programmatic access to the Zuper field service management platform. It covers jobs, scheduling, route optimization, customers, organizations, assets, inventory, purchase orders, invoices, proposals, quotes, timesheets, projects, properties, service tasks, service contracts, webhooks, and communications. Authentication uses API keys passed via the x-api-key header. Region-specific base URLs are discovered by POSTing to the accounts endpoint.\n\nContact Support:\n Name: Zuper Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "dc_region",
+      "value": "us1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{dc_region}}.zuperpro.com/api"
     }
-  }
+  ]
 }
